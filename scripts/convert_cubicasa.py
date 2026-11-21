@@ -33,7 +33,7 @@ from shapely.geometry import Point, Polygon
 from shapely.ops import unary_union
 
 GRID = 1000
-MAX_VERTS = 8
+MAX_VERTS = 10
 SKIP_ROOMS = ("outdoor",)
 ROOM_KEYWORDS = [
     ("bed", "bedroom"),
@@ -175,7 +175,11 @@ def orthogonalize(poly, tol):
 
 
 def room_polygon(poly, tol):
-    """Orthogonal polygon (<= MAX_VERTS vertices) approximating poly; bbox as last resort."""
+    """Orthogonal polygon (<= MAX_VERTS vertices) approximating poly.
+
+    A bounding box is used only when it is a close approximation; diagonal or
+    otherwise unrepresentable rooms are skipped instead of corrupting neighbours.
+    """
     for mult in (1, 2, 4, 8):
         verts = orthogonalize(poly, tol * mult)
         if verts is None or len(verts) > MAX_VERTS:
@@ -184,7 +188,15 @@ def room_polygon(poly, tol):
         if q.is_valid and 0.7 * poly.area <= q.area <= 1.3 * poly.area:
             return verts, "ortho"
     minx, miny, maxx, maxy = poly.bounds
-    return [(minx, miny), (maxx, miny), (maxx, maxy), (minx, maxy)], "bbox"
+    bbox = [(minx, miny), (maxx, miny), (maxx, maxy), (minx, maxy)]
+    if Polygon(bbox).area <= 1.15 * poly.area:
+        return bbox, "bbox"
+    return None
+
+
+def min_side(poly):
+    c = list(poly.minimum_rotated_rectangle.exterior.coords)
+    return min(math.dist(c[0], c[1]), math.dist(c[1], c[2]))
 
 
 def cluster_map(values, tol):
@@ -265,7 +277,8 @@ def convert_plan(svg_path, png_path, plan_id="plan"):
     snap_tol = max(4.0, 0.8 * thick)
 
     # rooms -> orthogonal polygons
-    raw = []  # (type, orig polygon, verts, method)
+    raw = []  # (type, name, orig polygon, verts, method)
+    dropped_rooms = []
     for el in items["Space"]:
         cls = (el.get("class") or "").split()
         name = " ".join(cls[1:])
@@ -275,39 +288,44 @@ def convert_plan(svg_path, png_path, plan_id="plan"):
         if not polys:
             continue
         orig = to_grid(max(polys, key=lambda g: g.area))
-        if orig.area < 30:
+        rtype = room_type(name)
+        if orig.area < 30 or min_side(orig) < max(2.0, 0.5 * thick):
+            dropped_rooms.append({"type": rtype, "name": name, "reason": "degenerate"})
             continue
         grown = orig.buffer(thick / 2, join_style=2)
         if grown.geom_type == "MultiPolygon":
             grown = max(grown.geoms, key=lambda g: g.area)
-        verts, method = room_polygon(grown, simp_tol)
-        raw.append((room_type(name), orig, verts, method))
+        approx = room_polygon(grown, simp_tol)
+        if approx is None:
+            dropped_rooms.append({"type": rtype, "name": name, "reason": "not_orthogonal"})
+            continue
+        verts, method = approx
+        raw.append((rtype, name, orig, verts, method))
     if not raw:
         raise ValueError("no rooms found")
 
     # snap to a shared grid
-    xs = [v[0] for _, _, vs, _ in raw for v in vs]
-    ys = [v[1] for _, _, vs, _ in raw for v in vs]
+    xs = [v[0] for _, _, _, vs, _ in raw for v in vs]
+    ys = [v[1] for _, _, _, vs, _ in raw for v in vs]
     mx = cluster_map([int(round(x)) for x in xs], snap_tol)
     my = cluster_map([int(round(y)) for y in ys], snap_tol)
     rooms_in = []
-    for rtype, orig, verts, method in raw:
+    for rtype, name, orig, verts, method in raw:
         ring = [
             (min(max(mx[int(round(x))], 0), GRID), min(max(my[int(round(y))], 0), GRID))
             for x, y in verts
         ]
         ring = clean_ring(ring)
-        if len(ring) < 4:
+        q = Polygon(ring) if len(ring) >= 4 else None
+        if q is None or not q.is_valid or q.area < 20:
+            dropped_rooms.append({"type": rtype, "name": name, "reason": "snap_collapsed"})
             continue
-        q = Polygon(ring)
-        if not q.is_valid or q.area < 20:
-            continue
-        rooms_in.append((rtype, orig, ring, method))
+        rooms_in.append((rtype, name, orig, ring, method))
     if not rooms_in:
         raise ValueError("no valid rooms after snapping")
 
     # wall graph
-    all_pts = {p for _, _, ring, _ in rooms_in for p in ring}
+    all_pts = {p for _, _, _, ring, _ in rooms_in for p in ring}
     vert_ids, vertices = {}, []
 
     def vid(p):
@@ -318,7 +336,7 @@ def convert_plan(svg_path, png_path, plan_id="plan"):
 
     wall_key, walls = {}, []
     rooms = []
-    for ri, (rtype, orig, ring, method) in enumerate(rooms_in):
+    for ri, (rtype, name, orig, ring, method) in enumerate(rooms_in):
         loop = []
         n = len(ring)
         for i in range(n):
@@ -333,7 +351,7 @@ def convert_plan(svg_path, png_path, plan_id="plan"):
                                   "thickness": round(thick, 1)})
                 loop.append(wall_key[key])
         rooms.append({
-            "id": ri, "type": rtype, "method": method,
+            "id": ri, "type": rtype, "source_name": name, "method": method,
             "polygon": [list(p) for p in ring],
             "loop": loop,
             "orig_polygon": [[round(x, 1), round(y, 1)] for x, y in orig.exterior.coords][:-1],
@@ -383,6 +401,7 @@ def convert_plan(svg_path, png_path, plan_id="plan"):
     return {
         "plan_id": plan_id, "image_size": [W, H], "grid": GRID,
         "wall_thickness": round(thick, 1), "dropped_openings": dropped,
+        "dropped_rooms": dropped_rooms,
         "vertices": vertices, "walls": walls, "rooms": rooms, "openings": openings,
     }
 
