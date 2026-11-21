@@ -395,6 +395,32 @@ def convert_plan(svg_path, png_path, plan_id="plan"):
                              "sill": 0.9 if kind == "Window" else 0.0,
                              "height": 1.2 if kind == "Window" else 2.1})
 
+    # repair overlaps: adjacent symbols on one wall share the boundary at its midpoint
+    by_wall = {}
+    for o in openings:
+        by_wall.setdefault(o["wall"], []).append(o)
+    kept = []
+    for ops in by_wall.values():
+        ops.sort(key=lambda o: o["offset"])
+        on_wall = []
+        for o in ops:
+            if on_wall:
+                prev = on_wall[-1]
+                prev_end = prev["offset"] + prev["width"]
+                end = o["offset"] + o["width"]
+                if o["offset"] < prev_end - 1e-6:
+                    if end <= prev_end:  # duplicate symbol fully inside the previous one
+                        continue
+                    cut = round((o["offset"] + prev_end) / 2, 1)
+                    prev["width"] = round(cut - prev["offset"], 1)
+                    o["offset"] = cut
+                    o["width"] = round(end - cut, 1)
+            on_wall.append(o)
+        kept.extend(on_wall)
+    openings = kept
+    for i, o in enumerate(openings):
+        o["id"] = i
+
     return {
         "plan_id": plan_id, "image_size": [W, H], "grid": GRID,
         "wall_thickness": round(thick, 1), "dropped_openings": dropped,
