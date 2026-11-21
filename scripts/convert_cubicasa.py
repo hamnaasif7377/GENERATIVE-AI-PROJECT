@@ -69,20 +69,42 @@ def local(tag):
     return tag.rsplit("}", 1)[-1]
 
 
+def polygon_from_points(s):
+    pts = points_of(s)
+    if len(pts) < 3:
+        return None
+    p = Polygon(pts)
+    if not p.is_valid:
+        p = p.buffer(0)
+    if p.geom_type == "MultiPolygon":
+        p = max(p.geoms, key=lambda g: g.area)
+    return p if p.geom_type == "Polygon" and p.area > 1 else None
+
+
 def polygons_in(el):
     """All polygons below (and including) an SVG element, as shapely polygons."""
     out = []
     for e in el.iter():
         if local(e.tag) == "polygon" and e.get("points"):
-            pts = points_of(e.get("points"))
-            if len(pts) >= 3:
-                p = Polygon(pts)
-                if not p.is_valid:
-                    p = p.buffer(0)
-                if p.geom_type == "MultiPolygon":
-                    p = max(p.geoms, key=lambda g: g.area)
-                if p.geom_type == "Polygon" and p.area > 1:
-                    out.append(p)
+            p = polygon_from_points(e.get("points"))
+            if p is not None:
+                out.append(p)
+    return out
+
+
+def wall_polygons(el):
+    """Polygons of the wall footprint, skipping Door/Window symbols nested inside it."""
+    out = []
+    for c in el:
+        cls = (c.get("class") or "").split()
+        if cls and cls[0] in ("Door", "Window"):
+            continue
+        if local(c.tag) == "polygon" and c.get("points"):
+            p = polygon_from_points(c.get("points"))
+            if p is not None:
+                out.append(p)
+        else:
+            out += wall_polygons(c)
     return out
 
 
@@ -104,7 +126,7 @@ def collect(root):
 def wall_thickness(wall_els):
     vals = []
     for el in wall_els:
-        for p in polygons_in(el):
+        for p in wall_polygons(el):
             c = list(p.minimum_rotated_rectangle.exterior.coords)
             vals.append(min(math.dist(c[0], c[1]), math.dist(c[1], c[2])))
     t = statistics.median(vals) if vals else 6.0
