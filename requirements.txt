@@ -1,0 +1,12 @@
+numpy
+opencv-python-headless
+pytesseract
+pillow
+shapely
+pydantic
+fastapi
+uvicorn
+pymupdf
+pandas
+tqdm
+scipy
