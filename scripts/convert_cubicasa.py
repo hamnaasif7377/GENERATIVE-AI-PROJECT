@@ -93,7 +93,7 @@ def collect(root):
         cls = (el.get("class") or "").split()
         if cls and cls[0] in items:
             items[cls[0]].append(el)
-            return
+            # keep walking: CubiCasa nests Door/Window groups inside Wall groups
         for c in el:
             walk(c)
 

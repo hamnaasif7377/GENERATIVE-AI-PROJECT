@@ -14,10 +14,11 @@ SVG = """<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300">
 <g id="Model">
  <g class="Wall"><polygon points="20,20 380,20 380,30 20,30"/></g>
  <g class="Wall"><polygon points="20,270 380,270 380,280 20,280"/></g>
- <g class="Wall"><polygon points="195,30 205,30 205,270 195,270"/></g>
+ <g class="Wall"><polygon points="195,30 205,30 205,270 195,270"/>
+  <g class="Door Swing Beside"><g id="Threshold"><polygon points="193,120 207,120 207,160 193,160"/></g></g>
+ </g>
  <g class="Space Bedroom"><polygon points="30,30 195,30 195,270 30,270"/></g>
  <g class="Space Kitchen"><polygon points="205,30 370,30 370,270 205,270"/></g>
- <g class="Door Swing Beside"><g id="Threshold"><polygon points="193,120 207,120 207,160 193,160"/></g></g>
 </g></svg>"""
 
 
