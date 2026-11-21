@@ -274,7 +274,7 @@ def convert_plan(svg_path, png_path, plan_id="plan"):
     items = collect(root)
     thick = wall_thickness(items["Wall"]) * (fx + fy) / 2  # in grid units
     simp_tol = max(3.0, 0.5 * thick)
-    snap_tol = max(4.0, 0.8 * thick)
+    snap_tol = max(4.0, 1.2 * thick)
 
     # rooms -> orthogonal polygons
     raw = []  # (type, name, orig polygon, verts, method)
@@ -292,10 +292,7 @@ def convert_plan(svg_path, png_path, plan_id="plan"):
         if orig.area < 30 or min_side(orig) < max(2.0, 0.5 * thick):
             dropped_rooms.append({"type": rtype, "name": name, "reason": "degenerate"})
             continue
-        grown = orig.buffer(thick / 2, join_style=2)
-        if grown.geom_type == "MultiPolygon":
-            grown = max(grown.geoms, key=lambda g: g.area)
-        approx = room_polygon(grown, simp_tol)
+        approx = room_polygon(orig, simp_tol)
         if approx is None:
             dropped_rooms.append({"type": rtype, "name": name, "reason": "not_orthogonal"})
             continue
