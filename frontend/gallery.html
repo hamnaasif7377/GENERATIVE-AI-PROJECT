@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan2Walk · 3D gallery</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+         background: #0b1016; color: #dfe8f2; }
+  header { max-width: 1180px; margin: 0 auto; padding: 56px 24px 24px; }
+  header h1 { margin: 0 0 8px; font-size: 34px; letter-spacing: -0.02em; }
+  header p { margin: 0; color: #93a4b8; max-width: 760px; line-height: 1.6; }
+  .kpis { display: flex; gap: 28px; margin-top: 22px; flex-wrap: wrap; }
+  .kpi b { display: block; font-size: 24px; color: #fff; }
+  .kpi span { font-size: 12px; color: #8b9bb0; text-transform: uppercase; letter-spacing: .08em; }
+  main { max-width: 1180px; margin: 0 auto; padding: 8px 24px 72px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 22px; }
+  .card { background: #121a23; border: 1px solid #223040; border-radius: 16px; overflow: hidden;
+           display: flex; flex-direction: column; }
+  .card img { display: block; width: 100%; aspect-ratio: 18/13; object-fit: cover; background: #0b1016; }
+  .card.featured { grid-column: 1 / -1; }
+  .card.featured .shots { display: grid; grid-template-columns: 1fr 1fr; }
+  .card.featured .shots img { aspect-ratio: 18/11; }
+  .meta { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; }
+  .meta h3 { margin: 0; font-size: 15px; font-weight: 600; letter-spacing: .01em; }
+  .stats { margin: 0; color: #8b9bb0; font-size: 12px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-size: 11px; padding: 3px 8px; border-radius: 999px; background: #1b2734;
+           border: 1px solid #2b3b4d; color: #b9c7d6; }
+  .chip.living_room { border-color: #3f6f5a; }
+  .chip.kitchen { border-color: #6f5c33; }
+  .chip.bedroom { border-color: #3d5a7a; }
+  .chip.bathroom { border-color: #4a6f78; }
+  .open { margin-top: 4px; color: #7cc4ff; text-decoration: none; font-size: 13px; font-weight: 600; }
+  .open:hover { text-decoration: underline; }
+  .note { margin: 28px 0 34px; padding: 16px 18px; border-radius: 12px; background: #101820;
+           border: 1px solid #1f2c3a; color: #93a4b8; font-size: 13px; line-height: 1.6; }
+  code { background: #0d1319; padding: 2px 6px; border-radius: 5px; color: #93c5fd; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Plan2Walk · 3D gallery</h1>
+  <p>Deterministic glTF scenes built from converted CubiCasa5K floor plans. Each scene is a
+     wall graph with cut openings, door and window frames, floors and a single ceiling.
+     Open one to orbit it, then click <b>Walk</b> for first-person movement (WASD, mouse look).</p>
+  <div class="kpis">
+    <div class="kpi"><b>13</b><span>3D scenes</span></div>
+    <div class="kpi"><b>119</b><span>rooms</span></div>
+    <div class="kpi"><b>1288</b><span>m² modelled</span></div>
+    <div class="kpi"><b>0.03–0.18</b><span>MB per GLB</span></div>
+  </div>
+</header>
+<main>
+  <div class="grid">
+    <article class="card featured">
+      <div class="shots"><a href="viewer.html?model=../results/3d/high_quality_architectural_22.glb"><img src="../results/3d/high_quality_architectural_22.png" alt="high_quality_architectural_22 exterior"></a><a href="viewer.html?model=../results/3d/high_quality_architectural_22.glb&cam=2.6,1.65,4.6&look=9.5,1.3,7.6&grid=0&bg=dfe9f2"><img src="../results/3d/high_quality_architectural_22_interior.png" alt="interior"></a></div>
+      <div class="meta">
+        <h3>high_quality_architectural_22</h3>
+        <p class="stats">16 rooms · 52 walls ·
+           26 openings · 119 m²</p>
+        <div class="chips"><span class="chip living_room">Living</span><span class="chip kitchen">Kitchen</span><span class="chip bedroom">Bedroom ×3</span><span class="chip bathroom">Bath ×2</span><span class="chip hall">Hall ×4</span><span class="chip other">Other ×5</span></div>
+        <a class="open" href="viewer.html?model=../results/3d/high_quality_architectural_22.glb">Open 3D walkthrough →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <a href="viewer.html?model=../results/3d/high_quality_architectural_1767.glb"><img src="../results/3d/high_quality_architectural_1767.png" alt="high_quality_architectural_1767"></a>
+      <div class="meta">
+        <h3>high_quality_architectural_1767</h3>
+        <p class="stats">4 rooms · 16 walls ·
+           5 openings · 48 m²</p>
+        <div class="chips"><span class="chip living_room">Living</span><span class="chip kitchen">Kitchen</span><span class="chip bathroom">Bath</span><span class="chip hall">Hall</span></div>
+        <a class="open" href="viewer.html?model=../results/3d/high_quality_architectural_1767.glb">Open 3D walkthrough →</a>
+      </div>
+    </article>
+    <article class="card">
+      <a href="viewer.html?model=../results/3d/high_quality_architectural_7696.glb"><img src="../results/3d/high_quality_architectural_7696.png" alt="high_quality_architectural_7696"></a>
+      <div class="meta">
+        <h3>high_quality_architectural_7696</h3>
+        <p class="stats">4 rooms · 15 walls ·
+           4 openings · 68 m²</p>
+        <div class="chips"><span class="chip living_room">Living</span><span class="chip kitchen">Kitchen</span><span class="chip bathroom">Bath</span><span class="chip hall">Hall</span></div>
+        <a class="open" href="viewer.html?model=../results/3d/high_quality_architectural_7696.glb">Open 3D walkthrough →</a>
+      </div>
+    </article>
+    <article class="card">
+      <a href="viewer.html?model=../results/3d/high_quality_9803.glb"><img src="../results/3d/high_quality_9803.png" alt="high_quality_9803"></a>
+      <div class="meta">
+        <h3>high_quality_9803</h3>
+        <p class="stats">5 rooms · 20 walls ·
+           11 openings · 142 m²</p>
+        <div class="chips"><span class="chip kitchen">Kitchen</span><span class="chip hall">Hall</span><span class="chip other">Other ×3</span></div>
+        <a class="open" href="viewer.html?model=../results/3d/high_quality_9803.glb">Open 3D walkthrough →</a>
+      </div>
+    </article>
+    <article class="card">
+      <a href="viewer.html?model=../results/3d/colorful_13500.glb"><img src="../results/3d/colorful_13500.png" alt="colorful_13500"></a>
+      <div class="meta">
+        <h3>colorful_13500</h3>
+        <p class="stats">6 rooms · 24 walls ·
+           8 openings · 89 m²</p>
+        <div class="chips"><span class="chip kitchen">Kitchen</span><span class="chip bedroom">Bedroom</span><span class="chip bathroom">Bath</span><span class="chip hall">Hall</span><span class="chip other">Other ×2</span></div>
+        <a class="open" href="viewer.html?model=../results/3d/colorful_13500.glb">Open 3D walkthrough →</a>
+      </div>
+    </article>
+    <article class="card">
+      <a href="viewer.html?model=../results/3d/high_quality_architectural_3868.glb"><img src="../results/3d/high_quality_architectural_3868.png" alt="high_quality_architectural_3868"></a>
+      <div class="meta">
+        <h3>high_quality_architectural_3868</h3>
+        <p class="stats">7 rooms · 24 walls ·
+           12 openings · 98 m²</p>
+        <div class="chips"><span class="chip living_room">Living</span><span class="chip kitchen">Kitchen</span><span class="chip bedroom">Bedroom</span><span class="chip bathroom">Bath</span><span class="chip hall">Hall</span><span class="chip other">Other ×2</span></div>
+        <a class="open" href="viewer.html?model=../results/3d/high_quality_architectural_3868.glb">Open 3D walkthrough →</a>
+      </div>
+    </article>
+    <article class="card">
+      <a href="viewer.html?model=../results/3d/high_quality_architectural_875.glb"><img src="../results/3d/high_quality_architectural_875.png" alt="high_quality_architectural_875"></a>
+      <div class="meta">
+        <h3>high_quality_architectural_875</h3>
+        <p class="stats">8 rooms · 27 walls ·
+           15 openings · 148 m²</p>
+        <div class="chips"><span class="chip living_room">Living</span><span class="chip kitchen">Kitchen</span><span class="chip bedroom">Bedroom ×2</span><span class="chip bathroom">Bath</span><span class="chip hall">Hall ×2</span><span class="chip other">Other</span></div>
+        <a class="open" href="viewer.html?model=../results/3d/high_quality_architectural_875.glb">Open 3D walkthrough →</a>
+      </div>
+    </article>
+    <article class="card">
+      <a href="viewer.html?model=../results/3d/high_quality_architectural_6053.glb"><img src="../results/3d/high_quality_architectural_6053.png" alt="high_quality_architectural_6053"></a>
+      <div class="meta">
+        <h3>high_quality_architectural_6053</h3>
+        <p class="stats">9 rooms · 41 walls ·
+           14 openings · 88 m²</p>
+        <div class="chips"><span class="chip living_room">Living</span><span class="chip kitchen">Kitchen</span><span class="chip bedroom">Bedroom ×2</span><span class="chip bathroom">Bath ×2</span><span class="chip hall">Hall</span><span class="chip other">Other ×2</span></div>
+        <a class="open" href="viewer.html?model=../results/3d/high_quality_architectural_6053.glb">Open 3D walkthrough →</a>
+      </div>
+    </article>
+    <article class="card">
+      <a href="viewer.html?model=../results/3d/high_quality_architectural_812.glb"><img src="../results/3d/high_quality_architectural_812.png" alt="high_quality_architectural_812"></a>
+      <div class="meta">
+        <h3>high_quality_architectural_812</h3>
+        <p class="stats">9 rooms · 30 walls ·
+           13 openings · 75 m²</p>
+        <div class="chips"><span class="chip living_room">Living</span><span class="chip kitchen">Kitchen</span><span class="chip bedroom">Bedroom ×2</span><span class="chip bathroom">Bath</span><span class="chip hall">Hall</span><span class="chip other">Other ×3</span></div>
+        <a class="open" href="viewer.html?model=../results/3d/high_quality_architectural_812.glb">Open 3D walkthrough →</a>
+      </div>
+    </article>
+    <article class="card">
+      <a href="viewer.html?model=../results/3d/colorful_9448.glb"><img src="../results/3d/colorful_9448.png" alt="colorful_9448"></a>
+      <div class="meta">
+        <h3>colorful_9448</h3>
+        <p class="stats">10 rooms · 41 walls ·
+           15 openings · 165 m²</p>
+        <div class="chips"><span class="chip living_room">Living</span><span class="chip kitchen">Kitchen</span><span class="chip bedroom">Bedroom ×4</span><span class="chip bathroom">Bath ×2</span><span class="chip hall">Hall</span><span class="chip other">Other</span></div>
+        <a class="open" href="viewer.html?model=../results/3d/colorful_9448.glb">Open 3D walkthrough →</a>
+      </div>
+    </article>
+    <article class="card">
+      <a href="viewer.html?model=../results/3d/high_quality_architectural_7858.glb"><img src="../results/3d/high_quality_architectural_7858.png" alt="high_quality_architectural_7858"></a>
+      <div class="meta">
+        <h3>high_quality_architectural_7858</h3>
+        <p class="stats">11 rooms · 34 walls ·
+           17 openings · 74 m²</p>
+        <div class="chips"><span class="chip living_room">Living</span><span class="chip kitchen">Kitchen</span><span class="chip bedroom">Bedroom ×2</span><span class="chip bathroom">Bath ×2</span><span class="chip hall">Hall ×2</span><span class="chip other">Other ×3</span></div>
+        <a class="open" href="viewer.html?model=../results/3d/high_quality_architectural_7858.glb">Open 3D walkthrough →</a>
+      </div>
+    </article>
+    <article class="card">
+      <a href="viewer.html?model=../results/3d/high_quality_architectural_3060.glb"><img src="../results/3d/high_quality_architectural_3060.png" alt="high_quality_architectural_3060"></a>
+      <div class="meta">
+        <h3>high_quality_architectural_3060</h3>
+        <p class="stats">12 rooms · 47 walls ·
+           33 openings · 82 m²</p>
+        <div class="chips"><span class="chip living_room">Living</span><span class="chip kitchen">Kitchen</span><span class="chip bedroom">Bedroom ×3</span><span class="chip bathroom">Bath ×3</span><span class="chip other">Other ×4</span></div>
+        <a class="open" href="viewer.html?model=../results/3d/high_quality_architectural_3060.glb">Open 3D walkthrough →</a>
+      </div>
+    </article>
+    <article class="card">
+      <a href="viewer.html?model=../results/3d/high_quality_architectural_2530.glb"><img src="../results/3d/high_quality_architectural_2530.png" alt="high_quality_architectural_2530"></a>
+      <div class="meta">
+        <h3>high_quality_architectural_2530</h3>
+        <p class="stats">18 rooms · 59 walls ·
+           24 openings · 94 m²</p>
+        <div class="chips"><span class="chip living_room">Living ×2</span><span class="chip kitchen">Kitchen</span><span class="chip bedroom">Bedroom ×3</span><span class="chip bathroom">Bath ×3</span><span class="chip hall">Hall ×3</span><span class="chip other">Other ×6</span></div>
+        <a class="open" href="viewer.html?model=../results/3d/high_quality_architectural_2530.glb">Open 3D walkthrough →</a>
+      </div>
+    </article>
+  </div>
+  <div class="note">
+    Rebuild any scene with
+    <code>python scripts/build_scene.py --plan data/processed/test/&lt;id&gt;.json --out results/3d/&lt;id&gt;.glb</code>,
+    or rebuild the whole gallery with
+    <code>python scripts/build_scene.py --data data/processed/test --out results/3d --only ...</code>
+    then <code>python scripts/make_gallery.py</code>.
+    Interior screenshot camera parameters are reproducible through the viewer URL:
+    <code>cam=</code>, <code>look=</code>, <code>still=1</code>, <code>hud=0</code>, <code>grid=0</code>.
+  </div>
+</main>
+</body>
+</html>

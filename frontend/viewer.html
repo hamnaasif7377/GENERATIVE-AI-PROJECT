@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan2Walk · 3D viewer</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #0f141a; }
+  body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color: #eef2f7; }
+  #app { position: fixed; inset: 0; }
+  canvas { display: block; }
+  .panel {
+    position: fixed; z-index: 10; background: rgba(15, 20, 26, .78);
+    border: 1px solid rgba(255,255,255,.12); border-radius: 14px;
+    backdrop-filter: blur(14px); box-shadow: 0 12px 40px rgba(0,0,0,.35);
+  }
+  #topbar { top: 16px; left: 16px; padding: 12px 14px; display: flex; gap: 14px; align-items: center; }
+  #topbar h1 { font-size: 14px; margin: 0; font-weight: 650; letter-spacing: .2px; }
+  #topbar .sub { font-size: 11px; color: #9fb0c3; margin-top: 2px; }
+  #modes { display: flex; gap: 6px; }
+  button {
+    font: inherit; font-size: 12px; color: #dfe8f2; background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.14); border-radius: 9px; padding: 8px 12px; cursor: pointer;
+  }
+  button:hover { background: rgba(255,255,255,.13); }
+  button.active { background: #3b82f6; border-color: #3b82f6; color: #fff; }
+  #hint { left: 16px; bottom: 16px; padding: 10px 13px; font-size: 12px; color: #c3d0de; line-height: 1.55; max-width: 430px; }
+  #hint b { color: #fff; font-weight: 600; }
+  #status { right: 16px; top: 16px; padding: 10px 13px; font-size: 12px; color: #c3d0de; min-width: 190px; }
+  #status .big { color: #fff; font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  #toast { left: 50%; bottom: 28px; transform: translateX(-50%); padding: 9px 14px; font-size: 12px; opacity: 0; transition: opacity .2s; pointer-events: none; }
+  #toast.show { opacity: 1; }
+  #lock { position: fixed; inset: 0; z-index: 20; display: none; place-items: center; background: rgba(6,9,12,.62); backdrop-filter: blur(3px); }
+  #lock.show { display: grid; }
+  #lock .card { text-align: center; padding: 26px 34px; border-radius: 16px; background: rgba(15,20,26,.9); border: 1px solid rgba(255,255,255,.14); }
+  #lock .card p { margin: 6px 0 0; color: #aebdcd; font-size: 12px; }
+  #loading { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; background: #0f141a; transition: opacity .35s; }
+  #loading.hide { opacity: 0; pointer-events: none; }
+  .spinner { width: 34px; height: 34px; border-radius: 50%; border: 3px solid rgba(255,255,255,.18); border-top-color: #60a5fa; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  #error { position: fixed; inset: 0; z-index: 40; display: none; place-items: center; background: #0f141a; padding: 24px; }
+  #error.show { display: grid; }
+  #error .card { max-width: 620px; background: #171e27; border: 1px solid #2a3644; border-radius: 16px; padding: 24px; line-height: 1.6; font-size: 13px; color: #c8d4e0; }
+  #error code { background: #0d1319; padding: 2px 6px; border-radius: 5px; color: #93c5fd; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<div id="topbar" class="panel">
+  <div>
+    <h1>Plan2Walk</h1>
+    <div class="sub" id="planName">3D walkthrough</div>
+  </div>
+  <div id="modes">
+    <button id="orbitBtn" class="active">Orbit</button>
+    <button id="walkBtn">Walk</button>
+  </div>
+  <button id="ceilingBtn">Ceilings: on</button>
+  <button id="fitBtn">Fit</button>
+</div>
+
+<div id="status" class="panel">
+  <div class="big" id="meshCount">Loading…</div>
+  <div id="sizeInfo"></div>
+  <div id="modeInfo"></div>
+</div>
+
+<div id="hint" class="panel">
+  <b>Orbit:</b> drag to rotate · scroll to zoom · click a floor for the room name<br>
+  <b>Walk:</b> click the view, then <b>W A S D</b> to move, <b>Shift</b> to run, <b>Esc</b> to release.
+</div>
+
+<div id="toast" class="panel"></div>
+
+<div id="lock"><div class="card"><b>Click to walk</b><p>Mouse looks around · WASD moves · Esc releases</p></div></div>
+
+<div id="loading"><div class="spinner"></div></div>
+
+<div id="error"><div class="card">
+  <b>Could not load the 3D model.</b>
+  <p>The viewer must be served over HTTP, not opened as a file. From the repository root run:</p>
+  <p><code>python3 -m http.server 8000</code></p>
+  <p>then open <code>http://localhost:8000/frontend/viewer.html?model=/results/3d/high_quality_architectural_22.glb</code></p>
+  <p id="errorDetail" style="color:#fca5a5"></p>
+</div></div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three/build/three.module.js",
+    "three/addons/": "./vendor/three/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+const params = new URLSearchParams(location.search);
+const modelUrl = params.get('model') || '/results/3d/high_quality_architectural_22.glb';
+const planLabel = decodeURIComponent(modelUrl.split('/').pop().replace(/\.glb$/i, ''));
+document.getElementById('planName').textContent = planLabel;
+
+function parseVec(s) {
+  if (!s) return null;
+  const v = s.split(',').map(Number);
+  return v.length === 3 && v.every(Number.isFinite) ? v : null;
+}
+const customCam = parseVec(params.get('cam'));
+const customLook = parseVec(params.get('look'));
+
+const app = document.getElementById('app');
+const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance', logarithmicDepthBuffer: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+const shadowsOn = params.get('shadows') !== '0';
+renderer.shadowMap.enabled = shadowsOn;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.1;
+app.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0b1016);
+scene.fog = new THREE.Fog(0x0b1016, 45, 110);
+if (params.get('bg')) {
+  scene.background = new THREE.Color(`#${params.get('bg')}`);
+  scene.fog = null;
+}
+
+const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 400);
+camera.position.set(12, 12, 12);
+
+const hemi = new THREE.HemisphereLight(0xffffff, 0x8b95a3, 1.15);
+scene.add(hemi);
+const ambient = new THREE.AmbientLight(0xffffff, 0.55);
+scene.add(ambient);
+const sun = new THREE.DirectionalLight(0xfff6e8, 2.1);
+sun.position.set(12, 22, 16);
+sun.castShadow = shadowsOn;
+sun.shadow.mapSize.set(2048, 2048);
+sun.shadow.camera.near = 1;
+sun.shadow.camera.far = 80;
+sun.shadow.camera.left = -24;
+sun.shadow.camera.right = 24;
+sun.shadow.camera.top = 24;
+sun.shadow.camera.bottom = -24;
+sun.shadow.bias = -0.0004;
+sun.shadow.normalBias = 0.03;
+scene.add(sun);
+const fill = new THREE.DirectionalLight(0xcfe2ff, 0.6);
+fill.position.set(-14, 10, 12);
+scene.add(fill);
+
+const ground = new THREE.Mesh(
+  new THREE.PlaneGeometry(200, 200),
+  new THREE.MeshStandardMaterial({ color: 0x222a34, roughness: 1, metalness: 0 })
+);
+ground.rotation.x = -Math.PI / 2;
+ground.position.y = -0.06;
+ground.receiveShadow = true;
+if (params.get('gcol')) ground.material.color.set(`#${params.get('gcol')}`);
+if (params.get('ground') !== '0') scene.add(ground);
+const grid = new THREE.GridHelper(200, 200, 0x46515f, 0x2c3540);
+grid.position.y = -0.055;
+grid.material.opacity = 0.55;
+grid.material.transparent = true;
+if (params.get('grid') !== '0') scene.add(grid);
+
+const orbit = new OrbitControls(camera, renderer.domElement);
+orbit.enableDamping = true;
+orbit.dampingFactor = 0.08;
+orbit.maxPolarAngle = Math.PI / 2 - 0.03;
+orbit.minDistance = 1.5;
+orbit.maxDistance = 80;
+
+const pointer = new PointerLockControls(camera, renderer.domElement);
+scene.add(pointer.object);
+
+const state = {
+  mode: 'orbit',
+  ceilings: params.get('ceiling') !== '0',
+  model: null,
+  center: new THREE.Vector3(),
+  size: new THREE.Vector3(15, 3, 15),
+  wallBoxes: [],
+  floorMeshes: [],
+  ceilingMeshes: [],
+  walkStart: new THREE.Vector3(),
+  customView: customCam ? { cam: customCam, look: customLook } : null,
+  keys: new Set(),
+};
+
+const clock = new THREE.Clock();
+const loader = new GLTFLoader();
+
+if (params.get('hud') === '0') {
+  for (const el of document.querySelectorAll('.panel, #hint')) el.style.display = 'none';
+}
+if (params.get('still') === '1') document.getElementById('loading').style.transition = 'none';
+if (!state.ceilings) document.getElementById('ceilingBtn').textContent = 'Ceilings: off';
+
+function setStatus() {
+  document.getElementById('meshCount').textContent = `${state.meshCount || 0} meshes`;
+  document.getElementById('sizeInfo').textContent =
+    `${state.size.x.toFixed(1)} × ${state.size.z.toFixed(1)} m · ${state.size.y.toFixed(1)} m high`;
+  document.getElementById('modeInfo').textContent = state.mode === 'orbit' ? 'Orbit camera' : 'First-person walk';
+}
+
+function frameModel() {
+  const box = new THREE.Box3().setFromObject(state.model);
+  box.getCenter(state.center);
+  box.getSize(state.size);
+  orbit.target.copy(state.center);
+  if (state.customView) {
+    camera.position.fromArray(state.customView.cam);
+    if (state.customView.look) orbit.target.fromArray(state.customView.look);
+    state.customView = null;
+    orbit.update();
+    setStatus();
+    return;
+  }
+  const maxDim = Math.max(state.size.x, state.size.z);
+  const dist = maxDim * 0.95 + 3.5;
+  camera.position.set(state.center.x + dist * 0.62, state.center.y + dist * 0.52, state.center.z + dist * 0.62);
+  orbit.update();
+  setStatus();
+}
+
+function fit() {
+  if (!state.model) return;
+  if (state.mode === 'walk') setMode('orbit');
+  frameModel();
+}
+
+function setMode(mode) {
+  if (!state.model) return;
+  state.mode = mode;
+  document.getElementById('orbitBtn').classList.toggle('active', mode === 'orbit');
+  document.getElementById('walkBtn').classList.toggle('active', mode === 'walk');
+  if (mode === 'orbit') {
+    pointer.unlock();
+    document.getElementById('lock').classList.remove('show');
+    orbit.enabled = true;
+    grid.visible = params.get('grid') !== '0';
+    frameModel();
+  } else {
+    orbit.enabled = false;
+    grid.visible = false;
+    camera.position.copy(state.walkStart);
+    camera.position.y = 1.65;
+    const look = state.center.clone();
+    look.y = 1.65;
+    camera.lookAt(look);
+    document.getElementById('lock').classList.add('show');
+  }
+  setStatus();
+}
+
+function toggleCeilings() {
+  state.ceilings = !state.ceilings;
+  for (const m of state.ceilingMeshes) m.visible = state.ceilings;
+  document.getElementById('ceilingBtn').textContent = `Ceilings: ${state.ceilings ? 'on' : 'off'}`;
+}
+
+function collides(x, z) {
+  const r = 0.24;
+  for (const b of state.wallBoxes) {
+    if (b.min.y > 1.7 || b.max.y < 0.12) continue; // lintels are above the walker
+    if (x > b.min.x - r && x < b.max.x + r && z > b.min.z - r && z < b.max.z + r) return true;
+  }
+  return false;
+}
+
+function moveWalk(dt) {
+  const forward = new THREE.Vector3();
+  camera.getWorldDirection(forward);
+  forward.y = 0;
+  if (forward.lengthSq() < 1e-6) return;
+  forward.normalize();
+  const right = new THREE.Vector3().crossVectors(forward, new THREE.Vector3(0, 1, 0)).normalize();
+  const move = new THREE.Vector3();
+  if (state.keys.has('KeyW') || state.keys.has('ArrowUp')) move.add(forward);
+  if (state.keys.has('KeyS') || state.keys.has('ArrowDown')) move.sub(forward);
+  if (state.keys.has('KeyD') || state.keys.has('ArrowRight')) move.add(right);
+  if (state.keys.has('KeyA') || state.keys.has('ArrowLeft')) move.sub(right);
+  if (move.lengthSq() === 0) return;
+  move.normalize().multiplyScalar((state.keys.has('ShiftLeft') || state.keys.has('ShiftRight') ? 5.2 : 2.6) * dt);
+  const nextX = camera.position.x + move.x;
+  if (!collides(nextX, camera.position.z)) camera.position.x = nextX;
+  const nextZ = camera.position.z + move.z;
+  if (!collides(camera.position.x, nextZ)) camera.position.z = nextZ;
+  camera.position.y = 1.65;
+}
+
+function pickRoom(event) {
+  if (state.mode !== 'orbit' || !state.floorMeshes.length) return;
+  const rect = renderer.domElement.getBoundingClientRect();
+  const mouse = new THREE.Vector2(
+    ((event.clientX - rect.left) / rect.width) * 2 - 1,
+    -((event.clientY - rect.top) / rect.height) * 2 + 1
+  );
+  const ray = new THREE.Raycaster();
+  ray.setFromCamera(mouse, camera);
+  const hits = ray.intersectObjects(state.floorMeshes, false);
+  if (!hits.length) return;
+  const name = hits[0].object.name || '';
+  const parts = name.split('_');
+  const room = parts.slice(2).join(' ') || 'room';
+  const toast = document.getElementById('toast');
+  toast.textContent = room.replace(/_/g, ' ');
+  toast.classList.add('show');
+  clearTimeout(pickRoom.timer);
+  pickRoom.timer = setTimeout(() => toast.classList.remove('show'), 1800);
+}
+
+function loadModel(url) {
+  document.getElementById('loading').classList.remove('hide');
+  document.getElementById('error').classList.remove('show');
+  loader.load(url, (gltf) => {
+    if (state.model) scene.remove(state.model);
+    state.model = gltf.scene;
+    state.wallBoxes = [];
+    state.floorMeshes = [];
+    state.ceilingMeshes = [];
+    state.meshCount = 0;
+
+    state.model.traverse((o) => {
+      if (!o.isMesh) return;
+      state.meshCount++;
+      const name = o.name || '';
+      const only = params.get('only');
+      if (only) o.visible = name.startsWith(only);
+      o.castShadow = shadowsOn && !(name.startsWith('Ceiling') || name.startsWith('Window'));
+      o.receiveShadow = true;
+      if (name.startsWith('Wall')) {
+        o.geometry.computeBoundingBox();
+        state.wallBoxes.push(new THREE.Box3().setFromObject(o));
+      }
+      if (name.startsWith('Floor')) state.floorMeshes.push(o);
+      if (name.startsWith('Ceiling')) {
+        state.ceilingMeshes.push(o);
+        if (!only) o.visible = state.ceilings;
+        if (params.get('ceil2') === '1') {
+          const mats = Array.isArray(o.material) ? o.material : [o.material];
+          for (const m of mats) if (m) m.side = THREE.DoubleSide;
+        }
+      }
+      if (name.startsWith('Window')) {
+        const mats = Array.isArray(o.material) ? o.material : [o.material];
+        for (const m of mats) {
+          if (!m) continue;
+          m.transparent = true;
+          m.side = THREE.DoubleSide;
+          m.depthWrite = false;
+        }
+      }
+      if (params.get('allsides') === '1') {
+        const mats = Array.isArray(o.material) ? o.material : [o.material];
+        for (const m of mats) if (m) m.side = THREE.DoubleSide;
+      }
+      if (params.get('debug') === '1') {
+        o.material = Array.isArray(o.material) ? o.material.map((m) => m.clone()) : o.material.clone();
+        const mats = Array.isArray(o.material) ? o.material : [o.material];
+        for (const m of mats) {
+          m.transparent = false;
+          m.opacity = 1;
+          m.depthWrite = true;
+          if (name.startsWith('Ceiling')) m.color.set(0xff0000);
+          else if (name.startsWith('Wall')) m.color.set(0xffff00);
+          else if (name.startsWith('Floor')) m.color.set(0x00ff00);
+        }
+      }
+    });
+    scene.add(state.model);
+
+    // start the walker in the largest room, on the floor
+    let best = null;
+    for (const f of state.floorMeshes) {
+      const b = new THREE.Box3().setFromObject(f);
+      const s = b.getSize(new THREE.Vector3());
+      const area = s.x * s.z;
+      if (!best || area > best.area) best = { f, b, area };
+    }
+    if (best) {
+      const c = best.b.getCenter(new THREE.Vector3());
+      state.walkStart.set(c.x, 1.65, c.z);
+    } else {
+      const b = new THREE.Box3().setFromObject(state.model);
+      b.getCenter(state.walkStart);
+      state.walkStart.y = 1.65;
+    }
+
+    frameModel();
+    document.getElementById('loading').classList.add('hide');
+    const pick = params.get('pick');
+    if (pick) {
+      setTimeout(() => {
+        const [px, py] = pick.split(',').map(Number);
+        const ray = new THREE.Raycaster();
+        ray.setFromCamera(new THREE.Vector2(px * 2 - 1, -(py * 2 - 1)), camera);
+        const hits = ray.intersectObjects(scene.children, true).filter((h) => h.object.visible);
+        document.title = hits.length
+          ? `${hits[0].object.name} @ ${hits[0].distance.toFixed(2)} cam ${camera.position.toArray().map((v) => v.toFixed(1)).join(',')} hit ${hits[0].point.toArray().map((v) => v.toFixed(1)).join(',')}`
+          : 'MISS';
+      }, 500);
+    }
+  }, undefined, (err) => {
+    console.error(err);
+    document.getElementById('loading').classList.add('hide');
+    document.getElementById('error').classList.add('show');
+    document.getElementById('errorDetail').textContent = String(err && err.message ? err.message : err);
+  });
+}
+
+document.getElementById('orbitBtn').addEventListener('click', () => setMode('orbit'));
+document.getElementById('walkBtn').addEventListener('click', () => setMode('walk'));
+document.getElementById('fitBtn').addEventListener('click', fit);
+document.getElementById('ceilingBtn').addEventListener('click', toggleCeilings);
+renderer.domElement.addEventListener('click', (e) => {
+  if (state.mode === 'walk' && !pointer.isLocked) {
+    pointer.lock();
+    document.getElementById('lock').classList.remove('show');
+  } else if (state.mode === 'orbit') {
+    pickRoom(e);
+  }
+});
+pointer.addEventListener('unlock', () => {
+  if (state.mode === 'walk') document.getElementById('lock').classList.add('show');
+});
+window.addEventListener('keydown', (e) => {
+  state.keys.add(e.code);
+  if (e.code === 'Escape' && state.mode === 'walk') {
+    pointer.unlock();
+    document.getElementById('lock').classList.add('show');
+  }
+});
+window.addEventListener('keyup', (e) => state.keys.delete(e.code));
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+function animate() {
+  requestAnimationFrame(animate);
+  const dt = Math.min(clock.getDelta(), 0.05);
+  if (state.mode === 'orbit') orbit.update();
+  else if (pointer.isLocked) moveWalk(dt);
+  renderer.render(scene, camera);
+}
+
+loadModel(modelUrl);
+animate();
+</script>
+</body>
+</html>
