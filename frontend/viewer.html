@@ -104,7 +104,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 const params = new URLSearchParams(location.search);
 const modelUrl = params.get('model') || '/results/3d/high_quality_architectural_22.glb';
-const planLabel = decodeURIComponent(modelUrl.split('/').pop().replace(/\.glb$/i, ''));
+const planLabel = params.get('name') || decodeURIComponent(modelUrl.split('/').pop().replace(/\.glb$/i, ''));
 document.getElementById('planName').textContent = planLabel;
 
 function parseVec(s) {
