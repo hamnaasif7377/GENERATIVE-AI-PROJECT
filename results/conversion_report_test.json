@@ -1,0 +1,1665 @@
+{
+ "split": "test",
+ "converted": 398,
+ "kept": 369,
+ "excluded": 29,
+ "excluded_share": 0.0729,
+ "mean_iou_all": 0.9165,
+ "mean_iou_kept": 0.9204,
+ "failure_reasons": {
+  "room_overlap": 12,
+  "low_iou": 17
+ },
+ "plans": {
+  "colorful_11260": {
+   "mean_iou": 0.9218,
+   "reasons": []
+  },
+  "colorful_11395": {
+   "mean_iou": 0.9203,
+   "reasons": [
+    "room_overlap"
+   ]
+  },
+  "colorful_11397": {
+   "mean_iou": 0.8581,
+   "reasons": []
+  },
+  "colorful_11398": {
+   "mean_iou": 0.9106,
+   "reasons": []
+  },
+  "colorful_11399": {
+   "mean_iou": 0.9237,
+   "reasons": []
+  },
+  "colorful_11400": {
+   "mean_iou": 0.8996,
+   "reasons": []
+  },
+  "colorful_11402": {
+   "mean_iou": 0.9247,
+   "reasons": []
+  },
+  "colorful_11485": {
+   "mean_iou": 0.8005,
+   "reasons": [
+    "low_iou"
+   ]
+  },
+  "colorful_11527": {
+   "mean_iou": 0.9616,
+   "reasons": []
+  },
+  "colorful_11565": {
+   "mean_iou": 0.8998,
+   "reasons": []
+  },
+  "colorful_11573": {
+   "mean_iou": 0.9214,
+   "reasons": []
+  },
+  "colorful_11578": {
+   "mean_iou": 0.9316,
+   "reasons": []
+  },
+  "colorful_11664": {
+   "mean_iou": 0.9358,
+   "reasons": []
+  },
+  "colorful_11750": {
+   "mean_iou": 0.915,
+   "reasons": []
+  },
+  "colorful_11752": {
+   "mean_iou": 0.9213,
+   "reasons": []
+  },
+  "colorful_11773": {
+   "mean_iou": 0.9405,
+   "reasons": []
+  },
+  "colorful_11774": {
+   "mean_iou": 0.8947,
+   "reasons": []
+  },
+  "colorful_11859": {
+   "mean_iou": 0.8543,
+   "reasons": []
+  },
+  "colorful_11867": {
+   "mean_iou": 0.9117,
+   "reasons": []
+  },
+  "colorful_11960": {
+   "mean_iou": 0.9122,
+   "reasons": []
+  },
+  "colorful_11962": {
+   "mean_iou": 0.9055,
+   "reasons": []
+  },
+  "colorful_12002": {
+   "mean_iou": 0.9421,
+   "reasons": []
+  },
+  "colorful_12030": {
+   "mean_iou": 0.9004,
+   "reasons": []
+  },
+  "colorful_12094": {
+   "mean_iou": 0.9626,
+   "reasons": []
+  },
+  "colorful_12139": {
+   "mean_iou": 0.9211,
+   "reasons": []
+  },
+  "colorful_12200": {
+   "mean_iou": 0.9416,
+   "reasons": []
+  },
+  "colorful_12202": {
+   "mean_iou": 0.9538,
+   "reasons": []
+  },
+  "colorful_12214": {
+   "mean_iou": 0.9393,
+   "reasons": []
+  },
+  "colorful_12217": {
+   "mean_iou": 0.931,
+   "reasons": []
+  },
+  "colorful_12229": {
+   "mean_iou": 0.9342,
+   "reasons": []
+  },
+  "colorful_12560": {
+   "mean_iou": 0.9005,
+   "reasons": []
+  },
+  "colorful_12625": {
+   "mean_iou": 0.8747,
+   "reasons": []
+  },
+  "colorful_12627": {
+   "mean_iou": 0.9498,
+   "reasons": []
+  },
+  "colorful_12729": {
+   "mean_iou": 0.922,
+   "reasons": []
+  },
+  "colorful_12769": {
+   "mean_iou": 0.9067,
+   "reasons": []
+  },
+  "colorful_12787": {
+   "mean_iou": 0.901,
+   "reasons": []
+  },
+  "colorful_12830": {
+   "mean_iou": 0.8698,
+   "reasons": []
+  },
+  "colorful_12866": {
+   "mean_iou": 0.8975,
+   "reasons": []
+  },
+  "colorful_12871": {
+   "mean_iou": 0.9028,
+   "reasons": []
+  },
+  "colorful_12872": {
+   "mean_iou": 0.8955,
+   "reasons": []
+  },
+  "colorful_12946": {
+   "mean_iou": 0.9221,
+   "reasons": []
+  },
+  "colorful_12981": {
+   "mean_iou": 0.9433,
+   "reasons": []
+  },
+  "colorful_13019": {
+   "mean_iou": 0.9454,
+   "reasons": []
+  },
+  "colorful_13022": {
+   "mean_iou": 0.9277,
+   "reasons": []
+  },
+  "colorful_13023": {
+   "mean_iou": 0.9364,
+   "reasons": []
+  },
+  "colorful_13031": {
+   "mean_iou": 0.9095,
+   "reasons": []
+  },
+  "colorful_13138": {
+   "mean_iou": 0.9314,
+   "reasons": []
+  },
+  "colorful_13181": {
+   "mean_iou": 0.9297,
+   "reasons": []
+  },
+  "colorful_13195": {
+   "mean_iou": 0.8869,
+   "reasons": []
+  },
+  "colorful_13213": {
+   "mean_iou": 0.8774,
+   "reasons": []
+  },
+  "colorful_13226": {
+   "mean_iou": 0.9115,
+   "reasons": []
+  },
+  "colorful_13254": {
+   "mean_iou": 0.9331,
+   "reasons": []
+  },
+  "colorful_13258": {
+   "mean_iou": 0.9325,
+   "reasons": []
+  },
+  "colorful_13264": {
+   "mean_iou": 0.8905,
+   "reasons": []
+  },
+  "colorful_13278": {
+   "mean_iou": 0.9404,
+   "reasons": []
+  },
+  "colorful_13281": {
+   "mean_iou": 0.8922,
+   "reasons": []
+  },
+  "colorful_13352": {
+   "mean_iou": 0.9231,
+   "reasons": []
+  },
+  "colorful_13438": {
+   "mean_iou": 0.9406,
+   "reasons": []
+  },
+  "colorful_13500": {
+   "mean_iou": 0.9417,
+   "reasons": []
+  },
+  "colorful_13502": {
+   "mean_iou": 0.9352,
+   "reasons": []
+  },
+  "colorful_13577": {
+   "mean_iou": 0.9352,
+   "reasons": []
+  },
+  "colorful_13589": {
+   "mean_iou": 0.913,
+   "reasons": []
+  },
+  "colorful_13685": {
+   "mean_iou": 0.8966,
+   "reasons": []
+  },
+  "colorful_2586": {
+   "mean_iou": 0.9047,
+   "reasons": []
+  },
+  "colorful_3598": {
+   "mean_iou": 0.9431,
+   "reasons": []
+  },
+  "colorful_8389": {
+   "mean_iou": 0.816,
+   "reasons": [
+    "low_iou"
+   ]
+  },
+  "colorful_9448": {
+   "mean_iou": 0.9157,
+   "reasons": [
+    "room_overlap"
+   ]
+  },
+  "high_quality_1025": {
+   "mean_iou": 0.9125,
+   "reasons": []
+  },
+  "high_quality_1140": {
+   "mean_iou": 0.9084,
+   "reasons": []
+  },
+  "high_quality_1282": {
+   "mean_iou": 0.9195,
+   "reasons": []
+  },
+  "high_quality_1403": {
+   "mean_iou": 0.9131,
+   "reasons": []
+  },
+  "high_quality_1506": {
+   "mean_iou": 0.9575,
+   "reasons": []
+  },
+  "high_quality_1510": {
+   "mean_iou": 0.9396,
+   "reasons": []
+  },
+  "high_quality_1569": {
+   "mean_iou": 0.9183,
+   "reasons": []
+  },
+  "high_quality_1692": {
+   "mean_iou": 0.8313,
+   "reasons": [
+    "low_iou"
+   ]
+  },
+  "high_quality_1877": {
+   "mean_iou": 0.9464,
+   "reasons": []
+  },
+  "high_quality_19": {
+   "mean_iou": 0.9061,
+   "reasons": []
+  },
+  "high_quality_20168": {
+   "mean_iou": 0.9327,
+   "reasons": []
+  },
+  "high_quality_20174": {
+   "mean_iou": 0.9364,
+   "reasons": []
+  },
+  "high_quality_20183": {
+   "mean_iou": 0.954,
+   "reasons": []
+  },
+  "high_quality_20188": {
+   "mean_iou": 0.9253,
+   "reasons": []
+  },
+  "high_quality_20197": {
+   "mean_iou": 0.9193,
+   "reasons": []
+  },
+  "high_quality_20198": {
+   "mean_iou": 0.927,
+   "reasons": []
+  },
+  "high_quality_3074": {
+   "mean_iou": 0.9227,
+   "reasons": []
+  },
+  "high_quality_3078": {
+   "mean_iou": 0.911,
+   "reasons": []
+  },
+  "high_quality_3106": {
+   "mean_iou": 0.9534,
+   "reasons": []
+  },
+  "high_quality_3141": {
+   "mean_iou": 0.9282,
+   "reasons": []
+  },
+  "high_quality_3162": {
+   "mean_iou": 0.9242,
+   "reasons": []
+  },
+  "high_quality_3247": {
+   "mean_iou": 0.9434,
+   "reasons": []
+  },
+  "high_quality_337": {
+   "mean_iou": 0.9043,
+   "reasons": []
+  },
+  "high_quality_3512": {
+   "mean_iou": 0.9166,
+   "reasons": []
+  },
+  "high_quality_3529": {
+   "mean_iou": 0.9286,
+   "reasons": []
+  },
+  "high_quality_3638": {
+   "mean_iou": 0.9419,
+   "reasons": []
+  },
+  "high_quality_3676": {
+   "mean_iou": 0.9642,
+   "reasons": []
+  },
+  "high_quality_3801": {
+   "mean_iou": 0.9156,
+   "reasons": []
+  },
+  "high_quality_3930": {
+   "mean_iou": 0.9267,
+   "reasons": []
+  },
+  "high_quality_3954": {
+   "mean_iou": 0.9341,
+   "reasons": []
+  },
+  "high_quality_4617": {
+   "mean_iou": 0.9189,
+   "reasons": []
+  },
+  "high_quality_4712": {
+   "mean_iou": 0.9449,
+   "reasons": []
+  },
+  "high_quality_4767": {
+   "mean_iou": 0.896,
+   "reasons": []
+  },
+  "high_quality_477": {
+   "mean_iou": 0.9354,
+   "reasons": []
+  },
+  "high_quality_4815": {
+   "mean_iou": 0.9006,
+   "reasons": []
+  },
+  "high_quality_4851": {
+   "mean_iou": 0.9424,
+   "reasons": [
+    "room_overlap"
+   ]
+  },
+  "high_quality_488": {
+   "mean_iou": 0.9419,
+   "reasons": []
+  },
+  "high_quality_5588": {
+   "mean_iou": 0.9471,
+   "reasons": []
+  },
+  "high_quality_5632": {
+   "mean_iou": 0.9524,
+   "reasons": []
+  },
+  "high_quality_5703": {
+   "mean_iou": 0.9573,
+   "reasons": []
+  },
+  "high_quality_5774": {
+   "mean_iou": 0.846,
+   "reasons": [
+    "low_iou"
+   ]
+  },
+  "high_quality_5807": {
+   "mean_iou": 0.9317,
+   "reasons": []
+  },
+  "high_quality_5836": {
+   "mean_iou": 0.9171,
+   "reasons": []
+  },
+  "high_quality_5845": {
+   "mean_iou": 0.9118,
+   "reasons": []
+  },
+  "high_quality_5858": {
+   "mean_iou": 0.9444,
+   "reasons": []
+  },
+  "high_quality_5985": {
+   "mean_iou": 0.9317,
+   "reasons": []
+  },
+  "high_quality_6058": {
+   "mean_iou": 0.9366,
+   "reasons": []
+  },
+  "high_quality_6521": {
+   "mean_iou": 0.9192,
+   "reasons": []
+  },
+  "high_quality_6624": {
+   "mean_iou": 0.8736,
+   "reasons": []
+  },
+  "high_quality_750": {
+   "mean_iou": 0.9426,
+   "reasons": [
+    "room_overlap"
+   ]
+  },
+  "high_quality_7625": {
+   "mean_iou": 0.9057,
+   "reasons": []
+  },
+  "high_quality_7790": {
+   "mean_iou": 0.9527,
+   "reasons": []
+  },
+  "high_quality_8230": {
+   "mean_iou": 0.9404,
+   "reasons": []
+  },
+  "high_quality_837": {
+   "mean_iou": 0.9235,
+   "reasons": []
+  },
+  "high_quality_8380": {
+   "mean_iou": 0.8568,
+   "reasons": []
+  },
+  "high_quality_8731": {
+   "mean_iou": 0.9338,
+   "reasons": []
+  },
+  "high_quality_8816": {
+   "mean_iou": 0.9189,
+   "reasons": []
+  },
+  "high_quality_90": {
+   "mean_iou": 0.9338,
+   "reasons": []
+  },
+  "high_quality_9334": {
+   "mean_iou": 0.9025,
+   "reasons": []
+  },
+  "high_quality_9480": {
+   "mean_iou": 0.8999,
+   "reasons": []
+  },
+  "high_quality_9671": {
+   "mean_iou": 0.903,
+   "reasons": []
+  },
+  "high_quality_9803": {
+   "mean_iou": 0.9464,
+   "reasons": []
+  },
+  "high_quality_9864": {
+   "mean_iou": 0.9421,
+   "reasons": []
+  },
+  "high_quality_architectural_1041": {
+   "mean_iou": 0.9435,
+   "reasons": []
+  },
+  "high_quality_architectural_1116": {
+   "mean_iou": 0.8521,
+   "reasons": []
+  },
+  "high_quality_architectural_1141": {
+   "mean_iou": 0.9111,
+   "reasons": []
+  },
+  "high_quality_architectural_1165": {
+   "mean_iou": 0.9567,
+   "reasons": [
+    "room_overlap"
+   ]
+  },
+  "high_quality_architectural_1191": {
+   "mean_iou": 0.9208,
+   "reasons": []
+  },
+  "high_quality_architectural_1217": {
+   "mean_iou": 0.9339,
+   "reasons": []
+  },
+  "high_quality_architectural_1228": {
+   "mean_iou": 0.9296,
+   "reasons": []
+  },
+  "high_quality_architectural_123": {
+   "mean_iou": 0.8882,
+   "reasons": []
+  },
+  "high_quality_architectural_1235": {
+   "mean_iou": 0.9235,
+   "reasons": []
+  },
+  "high_quality_architectural_1242": {
+   "mean_iou": 0.9382,
+   "reasons": []
+  },
+  "high_quality_architectural_1264": {
+   "mean_iou": 0.8921,
+   "reasons": []
+  },
+  "high_quality_architectural_1279": {
+   "mean_iou": 0.944,
+   "reasons": []
+  },
+  "high_quality_architectural_1284": {
+   "mean_iou": 0.9341,
+   "reasons": []
+  },
+  "high_quality_architectural_1285": {
+   "mean_iou": 0.9026,
+   "reasons": []
+  },
+  "high_quality_architectural_1293": {
+   "mean_iou": 0.9138,
+   "reasons": []
+  },
+  "high_quality_architectural_1319": {
+   "mean_iou": 0.9218,
+   "reasons": []
+  },
+  "high_quality_architectural_1339": {
+   "mean_iou": 0.9269,
+   "reasons": []
+  },
+  "high_quality_architectural_141": {
+   "mean_iou": 0.9097,
+   "reasons": []
+  },
+  "high_quality_architectural_1432": {
+   "mean_iou": 0.9291,
+   "reasons": []
+  },
+  "high_quality_architectural_1444": {
+   "mean_iou": 0.9112,
+   "reasons": []
+  },
+  "high_quality_architectural_145": {
+   "mean_iou": 0.9247,
+   "reasons": []
+  },
+  "high_quality_architectural_1511": {
+   "mean_iou": 0.9386,
+   "reasons": []
+  },
+  "high_quality_architectural_1551": {
+   "mean_iou": 0.9326,
+   "reasons": []
+  },
+  "high_quality_architectural_1590": {
+   "mean_iou": 0.9105,
+   "reasons": []
+  },
+  "high_quality_architectural_1599": {
+   "mean_iou": 0.9297,
+   "reasons": []
+  },
+  "high_quality_architectural_1601": {
+   "mean_iou": 0.9371,
+   "reasons": []
+  },
+  "high_quality_architectural_1622": {
+   "mean_iou": 0.9212,
+   "reasons": []
+  },
+  "high_quality_architectural_1636": {
+   "mean_iou": 0.9325,
+   "reasons": []
+  },
+  "high_quality_architectural_165": {
+   "mean_iou": 0.9722,
+   "reasons": []
+  },
+  "high_quality_architectural_1652": {
+   "mean_iou": 0.9343,
+   "reasons": [
+    "room_overlap"
+   ]
+  },
+  "high_quality_architectural_1669": {
+   "mean_iou": 0.9147,
+   "reasons": []
+  },
+  "high_quality_architectural_1683": {
+   "mean_iou": 0.9148,
+   "reasons": []
+  },
+  "high_quality_architectural_1701": {
+   "mean_iou": 0.9279,
+   "reasons": []
+  },
+  "high_quality_architectural_1718": {
+   "mean_iou": 0.8955,
+   "reasons": []
+  },
+  "high_quality_architectural_172": {
+   "mean_iou": 0.9102,
+   "reasons": []
+  },
+  "high_quality_architectural_1754": {
+   "mean_iou": 0.9491,
+   "reasons": []
+  },
+  "high_quality_architectural_1767": {
+   "mean_iou": 0.9298,
+   "reasons": []
+  },
+  "high_quality_architectural_1772": {
+   "mean_iou": 0.9007,
+   "reasons": []
+  },
+  "high_quality_architectural_1778": {
+   "mean_iou": 0.9469,
+   "reasons": []
+  },
+  "high_quality_architectural_1781": {
+   "mean_iou": 0.9238,
+   "reasons": []
+  },
+  "high_quality_architectural_1788": {
+   "mean_iou": 0.9282,
+   "reasons": []
+  },
+  "high_quality_architectural_18": {
+   "mean_iou": 0.9413,
+   "reasons": []
+  },
+  "high_quality_architectural_1801": {
+   "mean_iou": 0.9445,
+   "reasons": []
+  },
+  "high_quality_architectural_1814": {
+   "mean_iou": 0.9238,
+   "reasons": []
+  },
+  "high_quality_architectural_1837": {
+   "mean_iou": 0.865,
+   "reasons": []
+  },
+  "high_quality_architectural_1838": {
+   "mean_iou": 0.964,
+   "reasons": []
+  },
+  "high_quality_architectural_1839": {
+   "mean_iou": 0.9401,
+   "reasons": []
+  },
+  "high_quality_architectural_1841": {
+   "mean_iou": 0.8843,
+   "reasons": []
+  },
+  "high_quality_architectural_1842": {
+   "mean_iou": 0.9577,
+   "reasons": []
+  },
+  "high_quality_architectural_1845": {
+   "mean_iou": 0.9568,
+   "reasons": []
+  },
+  "high_quality_architectural_1849": {
+   "mean_iou": 0.8876,
+   "reasons": []
+  },
+  "high_quality_architectural_1856": {
+   "mean_iou": 0.9419,
+   "reasons": []
+  },
+  "high_quality_architectural_1869": {
+   "mean_iou": 0.8889,
+   "reasons": []
+  },
+  "high_quality_architectural_1910": {
+   "mean_iou": 0.9004,
+   "reasons": []
+  },
+  "high_quality_architectural_1914": {
+   "mean_iou": 0.9863,
+   "reasons": []
+  },
+  "high_quality_architectural_1921": {
+   "mean_iou": 0.9003,
+   "reasons": []
+  },
+  "high_quality_architectural_1944": {
+   "mean_iou": 0.9171,
+   "reasons": []
+  },
+  "high_quality_architectural_1945": {
+   "mean_iou": 0.9094,
+   "reasons": []
+  },
+  "high_quality_architectural_1966": {
+   "mean_iou": 0.9022,
+   "reasons": []
+  },
+  "high_quality_architectural_1982": {
+   "mean_iou": 0.9204,
+   "reasons": []
+  },
+  "high_quality_architectural_199": {
+   "mean_iou": 0.9409,
+   "reasons": []
+  },
+  "high_quality_architectural_20000": {
+   "mean_iou": 0.958,
+   "reasons": []
+  },
+  "high_quality_architectural_20002": {
+   "mean_iou": 0.8676,
+   "reasons": []
+  },
+  "high_quality_architectural_20003": {
+   "mean_iou": 0.9349,
+   "reasons": []
+  },
+  "high_quality_architectural_20017": {
+   "mean_iou": 0.9035,
+   "reasons": []
+  },
+  "high_quality_architectural_20019": {
+   "mean_iou": 0.9602,
+   "reasons": []
+  },
+  "high_quality_architectural_20021": {
+   "mean_iou": 0.9163,
+   "reasons": []
+  },
+  "high_quality_architectural_20022": {
+   "mean_iou": 0.9389,
+   "reasons": []
+  },
+  "high_quality_architectural_20023": {
+   "mean_iou": 0.9292,
+   "reasons": []
+  },
+  "high_quality_architectural_20028": {
+   "mean_iou": 0.9174,
+   "reasons": []
+  },
+  "high_quality_architectural_2011": {
+   "mean_iou": 0.8606,
+   "reasons": []
+  },
+  "high_quality_architectural_2014": {
+   "mean_iou": 0.9407,
+   "reasons": []
+  },
+  "high_quality_architectural_2029": {
+   "mean_iou": 0.9101,
+   "reasons": []
+  },
+  "high_quality_architectural_2031": {
+   "mean_iou": 0.9287,
+   "reasons": []
+  },
+  "high_quality_architectural_2035": {
+   "mean_iou": 0.9293,
+   "reasons": []
+  },
+  "high_quality_architectural_2036": {
+   "mean_iou": 0.8967,
+   "reasons": []
+  },
+  "high_quality_architectural_2037": {
+   "mean_iou": 0.8935,
+   "reasons": []
+  },
+  "high_quality_architectural_2053": {
+   "mean_iou": 0.9278,
+   "reasons": []
+  },
+  "high_quality_architectural_207": {
+   "mean_iou": 0.8994,
+   "reasons": []
+  },
+  "high_quality_architectural_2085": {
+   "mean_iou": 0.9295,
+   "reasons": []
+  },
+  "high_quality_architectural_2090": {
+   "mean_iou": 0.9202,
+   "reasons": []
+  },
+  "high_quality_architectural_211": {
+   "mean_iou": 0.9277,
+   "reasons": []
+  },
+  "high_quality_architectural_2149": {
+   "mean_iou": 0.9135,
+   "reasons": []
+  },
+  "high_quality_architectural_2179": {
+   "mean_iou": 0.9091,
+   "reasons": []
+  },
+  "high_quality_architectural_22": {
+   "mean_iou": 0.9168,
+   "reasons": []
+  },
+  "high_quality_architectural_2204": {
+   "mean_iou": 0.8181,
+   "reasons": [
+    "low_iou"
+   ]
+  },
+  "high_quality_architectural_2207": {
+   "mean_iou": 0.9296,
+   "reasons": []
+  },
+  "high_quality_architectural_225": {
+   "mean_iou": 0.8928,
+   "reasons": []
+  },
+  "high_quality_architectural_239": {
+   "mean_iou": 0.9604,
+   "reasons": []
+  },
+  "high_quality_architectural_2504": {
+   "mean_iou": 0.9314,
+   "reasons": []
+  },
+  "high_quality_architectural_2510": {
+   "mean_iou": 0.9603,
+   "reasons": []
+  },
+  "high_quality_architectural_2530": {
+   "mean_iou": 0.9114,
+   "reasons": []
+  },
+  "high_quality_architectural_2536": {
+   "mean_iou": 0.9516,
+   "reasons": []
+  },
+  "high_quality_architectural_2539": {
+   "mean_iou": 0.9206,
+   "reasons": []
+  },
+  "high_quality_architectural_2582": {
+   "mean_iou": 0.9244,
+   "reasons": []
+  },
+  "high_quality_architectural_287": {
+   "mean_iou": 0.9219,
+   "reasons": [
+    "room_overlap"
+   ]
+  },
+  "high_quality_architectural_3024": {
+   "mean_iou": 0.9276,
+   "reasons": []
+  },
+  "high_quality_architectural_3038": {
+   "mean_iou": 0.8659,
+   "reasons": []
+  },
+  "high_quality_architectural_3060": {
+   "mean_iou": 0.9186,
+   "reasons": []
+  },
+  "high_quality_architectural_32": {
+   "mean_iou": 0.9214,
+   "reasons": []
+  },
+  "high_quality_architectural_3516": {
+   "mean_iou": 0.7829,
+   "reasons": [
+    "low_iou"
+   ]
+  },
+  "high_quality_architectural_3517": {
+   "mean_iou": 0.9186,
+   "reasons": []
+  },
+  "high_quality_architectural_3527": {
+   "mean_iou": 0.9178,
+   "reasons": []
+  },
+  "high_quality_architectural_3580": {
+   "mean_iou": 0.9047,
+   "reasons": []
+  },
+  "high_quality_architectural_3608": {
+   "mean_iou": 0.8981,
+   "reasons": []
+  },
+  "high_quality_architectural_366": {
+   "mean_iou": 0.9159,
+   "reasons": []
+  },
+  "high_quality_architectural_3660": {
+   "mean_iou": 0.9109,
+   "reasons": []
+  },
+  "high_quality_architectural_3781": {
+   "mean_iou": 0.9255,
+   "reasons": []
+  },
+  "high_quality_architectural_3802": {
+   "mean_iou": 0.9214,
+   "reasons": []
+  },
+  "high_quality_architectural_3860": {
+   "mean_iou": 0.9056,
+   "reasons": []
+  },
+  "high_quality_architectural_3868": {
+   "mean_iou": 0.9361,
+   "reasons": []
+  },
+  "high_quality_architectural_3890": {
+   "mean_iou": 0.899,
+   "reasons": []
+  },
+  "high_quality_architectural_392": {
+   "mean_iou": 0.9469,
+   "reasons": []
+  },
+  "high_quality_architectural_3984": {
+   "mean_iou": 0.9061,
+   "reasons": []
+  },
+  "high_quality_architectural_4014": {
+   "mean_iou": 0.9211,
+   "reasons": []
+  },
+  "high_quality_architectural_4068": {
+   "mean_iou": 0.9412,
+   "reasons": []
+  },
+  "high_quality_architectural_416": {
+   "mean_iou": 0.9266,
+   "reasons": []
+  },
+  "high_quality_architectural_435": {
+   "mean_iou": 0.9412,
+   "reasons": []
+  },
+  "high_quality_architectural_4535": {
+   "mean_iou": 0.9244,
+   "reasons": []
+  },
+  "high_quality_architectural_4553": {
+   "mean_iou": 0.926,
+   "reasons": []
+  },
+  "high_quality_architectural_4555": {
+   "mean_iou": 0.9261,
+   "reasons": []
+  },
+  "high_quality_architectural_4589": {
+   "mean_iou": 0.9248,
+   "reasons": []
+  },
+  "high_quality_architectural_4594": {
+   "mean_iou": 0.9318,
+   "reasons": []
+  },
+  "high_quality_architectural_4707": {
+   "mean_iou": 0.9249,
+   "reasons": []
+  },
+  "high_quality_architectural_4775": {
+   "mean_iou": 0.8556,
+   "reasons": []
+  },
+  "high_quality_architectural_479": {
+   "mean_iou": 0.9275,
+   "reasons": []
+  },
+  "high_quality_architectural_481": {
+   "mean_iou": 0.9018,
+   "reasons": [
+    "room_overlap"
+   ]
+  },
+  "high_quality_architectural_4812": {
+   "mean_iou": 0.9327,
+   "reasons": []
+  },
+  "high_quality_architectural_4813": {
+   "mean_iou": 0.9016,
+   "reasons": [
+    "room_overlap"
+   ]
+  },
+  "high_quality_architectural_4828": {
+   "mean_iou": 0.9355,
+   "reasons": []
+  },
+  "high_quality_architectural_4845": {
+   "mean_iou": 0.9168,
+   "reasons": []
+  },
+  "high_quality_architectural_4847": {
+   "mean_iou": 0.8465,
+   "reasons": [
+    "low_iou"
+   ]
+  },
+  "high_quality_architectural_4898": {
+   "mean_iou": 0.9245,
+   "reasons": []
+  },
+  "high_quality_architectural_4911": {
+   "mean_iou": 0.9485,
+   "reasons": []
+  },
+  "high_quality_architectural_4928": {
+   "mean_iou": 0.9165,
+   "reasons": []
+  },
+  "high_quality_architectural_5018": {
+   "mean_iou": 0.9003,
+   "reasons": []
+  },
+  "high_quality_architectural_5023": {
+   "mean_iou": 0.8857,
+   "reasons": []
+  },
+  "high_quality_architectural_5039": {
+   "mean_iou": 0.8807,
+   "reasons": []
+  },
+  "high_quality_architectural_5046": {
+   "mean_iou": 0.9006,
+   "reasons": []
+  },
+  "high_quality_architectural_5064": {
+   "mean_iou": 0.8825,
+   "reasons": []
+  },
+  "high_quality_architectural_5089": {
+   "mean_iou": 0.9339,
+   "reasons": []
+  },
+  "high_quality_architectural_5100": {
+   "mean_iou": 0.8866,
+   "reasons": []
+  },
+  "high_quality_architectural_5121": {
+   "mean_iou": 0.9437,
+   "reasons": []
+  },
+  "high_quality_architectural_5135": {
+   "mean_iou": 0.7833,
+   "reasons": [
+    "low_iou"
+   ]
+  },
+  "high_quality_architectural_5156": {
+   "mean_iou": 0.9197,
+   "reasons": []
+  },
+  "high_quality_architectural_52": {
+   "mean_iou": 0.9158,
+   "reasons": []
+  },
+  "high_quality_architectural_521": {
+   "mean_iou": 0.8981,
+   "reasons": []
+  },
+  "high_quality_architectural_541": {
+   "mean_iou": 0.8723,
+   "reasons": []
+  },
+  "high_quality_architectural_546": {
+   "mean_iou": 0.9292,
+   "reasons": []
+  },
+  "high_quality_architectural_552": {
+   "mean_iou": 0.93,
+   "reasons": []
+  },
+  "high_quality_architectural_5570": {
+   "mean_iou": 0.9136,
+   "reasons": []
+  },
+  "high_quality_architectural_5571": {
+   "mean_iou": 0.9229,
+   "reasons": []
+  },
+  "high_quality_architectural_5617": {
+   "mean_iou": 0.8862,
+   "reasons": []
+  },
+  "high_quality_architectural_5642": {
+   "mean_iou": 0.9104,
+   "reasons": []
+  },
+  "high_quality_architectural_5760": {
+   "mean_iou": 0.9251,
+   "reasons": []
+  },
+  "high_quality_architectural_5765": {
+   "mean_iou": 0.9203,
+   "reasons": []
+  },
+  "high_quality_architectural_5872": {
+   "mean_iou": 0.9047,
+   "reasons": []
+  },
+  "high_quality_architectural_5886": {
+   "mean_iou": 0.8956,
+   "reasons": []
+  },
+  "high_quality_architectural_591": {
+   "mean_iou": 0.9405,
+   "reasons": []
+  },
+  "high_quality_architectural_5956": {
+   "mean_iou": 0.8474,
+   "reasons": [
+    "low_iou"
+   ]
+  },
+  "high_quality_architectural_5974": {
+   "mean_iou": 0.9225,
+   "reasons": []
+  },
+  "high_quality_architectural_6007": {
+   "mean_iou": 0.8959,
+   "reasons": []
+  },
+  "high_quality_architectural_6017": {
+   "mean_iou": 0.8107,
+   "reasons": [
+    "low_iou"
+   ]
+  },
+  "high_quality_architectural_6023": {
+   "mean_iou": 0.8809,
+   "reasons": []
+  },
+  "high_quality_architectural_6042": {
+   "mean_iou": 0.9218,
+   "reasons": []
+  },
+  "high_quality_architectural_6053": {
+   "mean_iou": 0.9013,
+   "reasons": []
+  },
+  "high_quality_architectural_6059": {
+   "mean_iou": 0.8847,
+   "reasons": []
+  },
+  "high_quality_architectural_6064": {
+   "mean_iou": 0.8958,
+   "reasons": []
+  },
+  "high_quality_architectural_6066": {
+   "mean_iou": 0.8986,
+   "reasons": []
+  },
+  "high_quality_architectural_6081": {
+   "mean_iou": 0.9073,
+   "reasons": []
+  },
+  "high_quality_architectural_6094": {
+   "mean_iou": 0.9347,
+   "reasons": []
+  },
+  "high_quality_architectural_6123": {
+   "mean_iou": 0.9231,
+   "reasons": []
+  },
+  "high_quality_architectural_6144": {
+   "mean_iou": 0.9483,
+   "reasons": []
+  },
+  "high_quality_architectural_6152": {
+   "mean_iou": 0.9186,
+   "reasons": []
+  },
+  "high_quality_architectural_6166": {
+   "mean_iou": 0.9237,
+   "reasons": []
+  },
+  "high_quality_architectural_6187": {
+   "mean_iou": 0.9771,
+   "reasons": []
+  },
+  "high_quality_architectural_6259": {
+   "mean_iou": 0.8567,
+   "reasons": []
+  },
+  "high_quality_architectural_6276": {
+   "mean_iou": 0.9252,
+   "reasons": []
+  },
+  "high_quality_architectural_6303": {
+   "mean_iou": 0.7762,
+   "reasons": [
+    "low_iou"
+   ]
+  },
+  "high_quality_architectural_6316": {
+   "mean_iou": 0.9124,
+   "reasons": []
+  },
+  "high_quality_architectural_6355": {
+   "mean_iou": 0.8509,
+   "reasons": []
+  },
+  "high_quality_architectural_6378": {
+   "mean_iou": 0.9364,
+   "reasons": []
+  },
+  "high_quality_architectural_6402": {
+   "mean_iou": 0.9345,
+   "reasons": []
+  },
+  "high_quality_architectural_6408": {
+   "mean_iou": 0.9167,
+   "reasons": []
+  },
+  "high_quality_architectural_6428": {
+   "mean_iou": 0.8945,
+   "reasons": []
+  },
+  "high_quality_architectural_6452": {
+   "mean_iou": 0.9218,
+   "reasons": []
+  },
+  "high_quality_architectural_6457": {
+   "mean_iou": 0.9262,
+   "reasons": []
+  },
+  "high_quality_architectural_6467": {
+   "mean_iou": 0.9258,
+   "reasons": []
+  },
+  "high_quality_architectural_6483": {
+   "mean_iou": 0.9282,
+   "reasons": []
+  },
+  "high_quality_architectural_654": {
+   "mean_iou": 0.8855,
+   "reasons": []
+  },
+  "high_quality_architectural_6549": {
+   "mean_iou": 0.9425,
+   "reasons": []
+  },
+  "high_quality_architectural_6596": {
+   "mean_iou": 0.9442,
+   "reasons": []
+  },
+  "high_quality_architectural_6606": {
+   "mean_iou": 0.8997,
+   "reasons": []
+  },
+  "high_quality_architectural_6631": {
+   "mean_iou": 0.9189,
+   "reasons": [
+    "room_overlap"
+   ]
+  },
+  "high_quality_architectural_6652": {
+   "mean_iou": 0.8857,
+   "reasons": []
+  },
+  "high_quality_architectural_6697": {
+   "mean_iou": 0.9203,
+   "reasons": []
+  },
+  "high_quality_architectural_6704": {
+   "mean_iou": 0.8485,
+   "reasons": [
+    "low_iou"
+   ]
+  },
+  "high_quality_architectural_6716": {
+   "mean_iou": 0.9143,
+   "reasons": []
+  },
+  "high_quality_architectural_6726": {
+   "mean_iou": 0.9269,
+   "reasons": []
+  },
+  "high_quality_architectural_7037": {
+   "mean_iou": 0.9408,
+   "reasons": []
+  },
+  "high_quality_architectural_7061": {
+   "mean_iou": 0.9094,
+   "reasons": []
+  },
+  "high_quality_architectural_7071": {
+   "mean_iou": 0.863,
+   "reasons": []
+  },
+  "high_quality_architectural_7119": {
+   "mean_iou": 0.9317,
+   "reasons": []
+  },
+  "high_quality_architectural_7516": {
+   "mean_iou": 0.9538,
+   "reasons": []
+  },
+  "high_quality_architectural_7606": {
+   "mean_iou": 0.941,
+   "reasons": []
+  },
+  "high_quality_architectural_7639": {
+   "mean_iou": 0.9668,
+   "reasons": [
+    "room_overlap"
+   ]
+  },
+  "high_quality_architectural_7647": {
+   "mean_iou": 0.9193,
+   "reasons": []
+  },
+  "high_quality_architectural_7691": {
+   "mean_iou": 0.9304,
+   "reasons": []
+  },
+  "high_quality_architectural_7696": {
+   "mean_iou": 0.9738,
+   "reasons": []
+  },
+  "high_quality_architectural_7715": {
+   "mean_iou": 0.8132,
+   "reasons": [
+    "low_iou"
+   ]
+  },
+  "high_quality_architectural_772": {
+   "mean_iou": 0.9067,
+   "reasons": []
+  },
+  "high_quality_architectural_774": {
+   "mean_iou": 0.8914,
+   "reasons": []
+  },
+  "high_quality_architectural_7760": {
+   "mean_iou": 0.8395,
+   "reasons": [
+    "low_iou"
+   ]
+  },
+  "high_quality_architectural_7780": {
+   "mean_iou": 0.9168,
+   "reasons": []
+  },
+  "high_quality_architectural_7809": {
+   "mean_iou": 0.921,
+   "reasons": []
+  },
+  "high_quality_architectural_7858": {
+   "mean_iou": 0.9245,
+   "reasons": []
+  },
+  "high_quality_architectural_789": {
+   "mean_iou": 0.9405,
+   "reasons": []
+  },
+  "high_quality_architectural_7894": {
+   "mean_iou": 0.8904,
+   "reasons": []
+  },
+  "high_quality_architectural_7901": {
+   "mean_iou": 0.9387,
+   "reasons": []
+  },
+  "high_quality_architectural_7974": {
+   "mean_iou": 0.9033,
+   "reasons": []
+  },
+  "high_quality_architectural_7980": {
+   "mean_iou": 0.9164,
+   "reasons": []
+  },
+  "high_quality_architectural_8046": {
+   "mean_iou": 0.9311,
+   "reasons": []
+  },
+  "high_quality_architectural_812": {
+   "mean_iou": 0.9106,
+   "reasons": []
+  },
+  "high_quality_architectural_8138": {
+   "mean_iou": 0.929,
+   "reasons": []
+  },
+  "high_quality_architectural_8189": {
+   "mean_iou": 0.9538,
+   "reasons": []
+  },
+  "high_quality_architectural_8208": {
+   "mean_iou": 0.936,
+   "reasons": []
+  },
+  "high_quality_architectural_8269": {
+   "mean_iou": 0.9585,
+   "reasons": [
+    "room_overlap"
+   ]
+  },
+  "high_quality_architectural_8281": {
+   "mean_iou": 0.918,
+   "reasons": []
+  },
+  "high_quality_architectural_8285": {
+   "mean_iou": 0.9211,
+   "reasons": []
+  },
+  "high_quality_architectural_8304": {
+   "mean_iou": 0.9324,
+   "reasons": []
+  },
+  "high_quality_architectural_8372": {
+   "mean_iou": 0.8731,
+   "reasons": []
+  },
+  "high_quality_architectural_84": {
+   "mean_iou": 0.9486,
+   "reasons": []
+  },
+  "high_quality_architectural_8502": {
+   "mean_iou": 0.9043,
+   "reasons": []
+  },
+  "high_quality_architectural_8571": {
+   "mean_iou": 0.9164,
+   "reasons": []
+  },
+  "high_quality_architectural_8573": {
+   "mean_iou": 0.9441,
+   "reasons": []
+  },
+  "high_quality_architectural_8576": {
+   "mean_iou": 0.8422,
+   "reasons": [
+    "low_iou"
+   ]
+  },
+  "high_quality_architectural_8726": {
+   "mean_iou": 0.9563,
+   "reasons": []
+  },
+  "high_quality_architectural_875": {
+   "mean_iou": 0.9242,
+   "reasons": []
+  },
+  "high_quality_architectural_900": {
+   "mean_iou": 0.8298,
+   "reasons": [
+    "low_iou"
+   ]
+  },
+  "high_quality_architectural_9093": {
+   "mean_iou": 0.9367,
+   "reasons": []
+  },
+  "high_quality_architectural_9185": {
+   "mean_iou": 0.943,
+   "reasons": []
+  },
+  "high_quality_architectural_9198": {
+   "mean_iou": 0.9162,
+   "reasons": []
+  },
+  "high_quality_architectural_9223": {
+   "mean_iou": 0.9192,
+   "reasons": []
+  },
+  "high_quality_architectural_9224": {
+   "mean_iou": 0.8757,
+   "reasons": []
+  },
+  "high_quality_architectural_9228": {
+   "mean_iou": 0.925,
+   "reasons": []
+  },
+  "high_quality_architectural_9270": {
+   "mean_iou": 0.914,
+   "reasons": []
+  },
+  "high_quality_architectural_9274": {
+   "mean_iou": 0.9063,
+   "reasons": []
+  },
+  "high_quality_architectural_9384": {
+   "mean_iou": 0.9529,
+   "reasons": []
+  },
+  "high_quality_architectural_9422": {
+   "mean_iou": 0.9485,
+   "reasons": []
+  },
+  "high_quality_architectural_9433": {
+   "mean_iou": 0.8739,
+   "reasons": []
+  },
+  "high_quality_architectural_9443": {
+   "mean_iou": 0.9178,
+   "reasons": []
+  },
+  "high_quality_architectural_9452": {
+   "mean_iou": 0.9385,
+   "reasons": []
+  },
+  "high_quality_architectural_9453": {
+   "mean_iou": 0.9073,
+   "reasons": []
+  },
+  "high_quality_architectural_9488": {
+   "mean_iou": 0.9189,
+   "reasons": []
+  },
+  "high_quality_architectural_9489": {
+   "mean_iou": 0.9559,
+   "reasons": []
+  },
+  "high_quality_architectural_9531": {
+   "mean_iou": 0.9439,
+   "reasons": []
+  },
+  "high_quality_architectural_9540": {
+   "mean_iou": 0.9469,
+   "reasons": []
+  },
+  "high_quality_architectural_9543": {
+   "mean_iou": 0.9101,
+   "reasons": []
+  },
+  "high_quality_architectural_9572": {
+   "mean_iou": 0.9037,
+   "reasons": []
+  },
+  "high_quality_architectural_9577": {
+   "mean_iou": 0.9219,
+   "reasons": []
+  },
+  "high_quality_architectural_9598": {
+   "mean_iou": 0.9202,
+   "reasons": []
+  },
+  "high_quality_architectural_9692": {
+   "mean_iou": 0.9151,
+   "reasons": []
+  },
+  "high_quality_architectural_9727": {
+   "mean_iou": 0.8428,
+   "reasons": [
+    "low_iou"
+   ]
+  },
+  "high_quality_architectural_9785": {
+   "mean_iou": 0.9538,
+   "reasons": []
+  },
+  "high_quality_architectural_9796": {
+   "mean_iou": 0.9133,
+   "reasons": []
+  },
+  "high_quality_architectural_9880": {
+   "mean_iou": 0.9315,
+   "reasons": []
+  },
+  "high_quality_architectural_9886": {
+   "mean_iou": 0.8754,
+   "reasons": []
+  },
+  "high_quality_architectural_9976": {
+   "mean_iou": 0.9089,
+   "reasons": []
+  }
+ }
+}

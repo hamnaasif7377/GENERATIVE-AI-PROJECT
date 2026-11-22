@@ -1,0 +1,641 @@
+{
+  "plan_id": "chat_layout-8d8b21",
+  "title": "Chat layout",
+  "units": "m",
+  "grid": 1.0,
+  "plan_width_m": 1.0,
+  "wall_height": 2.7,
+  "plot": {
+    "width_m": 10.0,
+    "depth_m": 9.0
+  },
+  "vertices": [
+    [
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      4.8
+    ],
+    [
+      0.0,
+      9.0
+    ],
+    [
+      3.9,
+      0.0
+    ],
+    [
+      3.9,
+      2.7
+    ],
+    [
+      3.9,
+      4.8
+    ],
+    [
+      3.9,
+      6.65
+    ],
+    [
+      3.9,
+      9.0
+    ],
+    [
+      7.1,
+      0.0
+    ],
+    [
+      7.1,
+      2.7
+    ],
+    [
+      10.0,
+      0.0
+    ],
+    [
+      10.0,
+      2.7
+    ],
+    [
+      10.0,
+      6.65
+    ],
+    [
+      10.0,
+      9.0
+    ]
+  ],
+  "walls": [
+    {
+      "id": 0,
+      "a": 0,
+      "b": 1,
+      "cls": "exterior",
+      "thickness": 0.2,
+      "adjacent_rooms": [
+        null,
+        3
+      ]
+    },
+    {
+      "id": 1,
+      "a": 1,
+      "b": 2,
+      "cls": "exterior",
+      "thickness": 0.2,
+      "adjacent_rooms": [
+        null,
+        4
+      ]
+    },
+    {
+      "id": 2,
+      "a": 3,
+      "b": 4,
+      "cls": "interior",
+      "thickness": 0.1,
+      "adjacent_rooms": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": 3,
+      "a": 4,
+      "b": 5,
+      "cls": "interior",
+      "thickness": 0.1,
+      "adjacent_rooms": [
+        3,
+        0
+      ]
+    },
+    {
+      "id": 4,
+      "a": 5,
+      "b": 6,
+      "cls": "interior",
+      "thickness": 0.1,
+      "adjacent_rooms": [
+        4,
+        0
+      ]
+    },
+    {
+      "id": 5,
+      "a": 6,
+      "b": 7,
+      "cls": "interior",
+      "thickness": 0.1,
+      "adjacent_rooms": [
+        4,
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "a": 8,
+      "b": 9,
+      "cls": "interior",
+      "thickness": 0.1,
+      "adjacent_rooms": [
+        2,
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "a": 10,
+      "b": 11,
+      "cls": "exterior",
+      "thickness": 0.2,
+      "adjacent_rooms": [
+        5,
+        null
+      ]
+    },
+    {
+      "id": 8,
+      "a": 11,
+      "b": 12,
+      "cls": "exterior",
+      "thickness": 0.2,
+      "adjacent_rooms": [
+        0,
+        null
+      ]
+    },
+    {
+      "id": 9,
+      "a": 12,
+      "b": 13,
+      "cls": "exterior",
+      "thickness": 0.2,
+      "adjacent_rooms": [
+        1,
+        null
+      ]
+    },
+    {
+      "id": 10,
+      "a": 0,
+      "b": 3,
+      "cls": "exterior",
+      "thickness": 0.2,
+      "adjacent_rooms": [
+        null,
+        3
+      ]
+    },
+    {
+      "id": 11,
+      "a": 3,
+      "b": 8,
+      "cls": "exterior",
+      "thickness": 0.2,
+      "adjacent_rooms": [
+        null,
+        2
+      ]
+    },
+    {
+      "id": 12,
+      "a": 8,
+      "b": 10,
+      "cls": "exterior",
+      "thickness": 0.2,
+      "adjacent_rooms": [
+        null,
+        5
+      ]
+    },
+    {
+      "id": 13,
+      "a": 4,
+      "b": 9,
+      "cls": "interior",
+      "thickness": 0.1,
+      "adjacent_rooms": [
+        2,
+        0
+      ]
+    },
+    {
+      "id": 14,
+      "a": 9,
+      "b": 11,
+      "cls": "interior",
+      "thickness": 0.1,
+      "adjacent_rooms": [
+        5,
+        0
+      ]
+    },
+    {
+      "id": 15,
+      "a": 1,
+      "b": 5,
+      "cls": "interior",
+      "thickness": 0.1,
+      "adjacent_rooms": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": 16,
+      "a": 6,
+      "b": 12,
+      "cls": "interior",
+      "thickness": 0.1,
+      "adjacent_rooms": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": 17,
+      "a": 2,
+      "b": 7,
+      "cls": "exterior",
+      "thickness": 0.2,
+      "adjacent_rooms": [
+        4,
+        null
+      ]
+    },
+    {
+      "id": 18,
+      "a": 7,
+      "b": 13,
+      "cls": "exterior",
+      "thickness": 0.2,
+      "adjacent_rooms": [
+        1,
+        null
+      ]
+    }
+  ],
+  "rooms": [
+    {
+      "id": 0,
+      "type": "living_room",
+      "name": "Family lounge",
+      "source_name": "Living room",
+      "windows": 2,
+      "doors": 1,
+      "polygon": [
+        [
+          3.9,
+          2.7
+        ],
+        [
+          10.0,
+          2.7
+        ],
+        [
+          10.0,
+          6.65
+        ],
+        [
+          3.9,
+          6.65
+        ]
+      ],
+      "area_m2": 24.09
+    },
+    {
+      "id": 1,
+      "type": "kitchen",
+      "name": "Kitchen",
+      "source_name": "Kitchen",
+      "windows": 1,
+      "doors": 1,
+      "polygon": [
+        [
+          3.9,
+          6.65
+        ],
+        [
+          10.0,
+          6.65
+        ],
+        [
+          10.0,
+          9.0
+        ],
+        [
+          3.9,
+          9.0
+        ]
+      ],
+      "area_m2": 14.34
+    },
+    {
+      "id": 2,
+      "type": "hall",
+      "name": "Hall",
+      "source_name": "Hall",
+      "windows": 0,
+      "doors": 2,
+      "polygon": [
+        [
+          3.9,
+          0.0
+        ],
+        [
+          7.1,
+          0.0
+        ],
+        [
+          7.1,
+          2.7
+        ],
+        [
+          3.9,
+          2.7
+        ]
+      ],
+      "area_m2": 8.64
+    },
+    {
+      "id": 3,
+      "type": "bedroom",
+      "name": "Master bedroom",
+      "source_name": "Master bedroom",
+      "windows": 1,
+      "doors": 1,
+      "polygon": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.9,
+          0.0
+        ],
+        [
+          3.9,
+          4.8
+        ],
+        [
+          0.0,
+          4.8
+        ]
+      ],
+      "area_m2": 18.72
+    },
+    {
+      "id": 4,
+      "type": "bedroom",
+      "name": "Bedroom 2",
+      "source_name": "Bedroom 2",
+      "windows": 1,
+      "doors": 1,
+      "polygon": [
+        [
+          0.0,
+          4.8
+        ],
+        [
+          3.9,
+          4.8
+        ],
+        [
+          3.9,
+          9.0
+        ],
+        [
+          0.0,
+          9.0
+        ]
+      ],
+      "area_m2": 16.38
+    },
+    {
+      "id": 5,
+      "type": "bathroom",
+      "name": "Bathroom",
+      "source_name": "Bathroom",
+      "windows": 1,
+      "doors": 1,
+      "polygon": [
+        [
+          7.1,
+          0.0
+        ],
+        [
+          10.0,
+          0.0
+        ],
+        [
+          10.0,
+          2.7
+        ],
+        [
+          7.1,
+          2.7
+        ]
+      ],
+      "area_m2": 7.83
+    }
+  ],
+  "openings": [
+    {
+      "id": 0,
+      "kind": "door",
+      "wall": 11,
+      "offset": 1.12,
+      "width": 0.95,
+      "sill": 0.0,
+      "height": 2.05
+    },
+    {
+      "id": 1,
+      "kind": "door",
+      "wall": 13,
+      "offset": 1.17,
+      "width": 0.85,
+      "sill": 0.0,
+      "height": 2.05
+    },
+    {
+      "id": 2,
+      "kind": "door",
+      "wall": 16,
+      "offset": 2.62,
+      "width": 0.85,
+      "sill": 0.0,
+      "height": 2.05
+    },
+    {
+      "id": 3,
+      "kind": "door",
+      "wall": 2,
+      "offset": 0.93,
+      "width": 0.85,
+      "sill": 0.0,
+      "height": 2.05
+    },
+    {
+      "id": 4,
+      "kind": "door",
+      "wall": 15,
+      "offset": 1.52,
+      "width": 0.85,
+      "sill": 0.0,
+      "height": 2.05
+    },
+    {
+      "id": 5,
+      "kind": "door",
+      "wall": 14,
+      "offset": 1.03,
+      "width": 0.85,
+      "sill": 0.0,
+      "height": 2.05
+    },
+    {
+      "id": 6,
+      "kind": "window",
+      "wall": 8,
+      "offset": 0.62,
+      "width": 1.4,
+      "sill": 0.9,
+      "height": 1.2
+    },
+    {
+      "id": 7,
+      "kind": "window",
+      "wall": 8,
+      "offset": 2.08,
+      "width": 1.4,
+      "sill": 0.9,
+      "height": 1.2
+    },
+    {
+      "id": 8,
+      "kind": "window",
+      "wall": 18,
+      "offset": 1.33,
+      "width": 1.4,
+      "sill": 0.9,
+      "height": 1.2
+    },
+    {
+      "id": 9,
+      "kind": "window",
+      "wall": 0,
+      "offset": 0.9,
+      "width": 1.4,
+      "sill": 0.9,
+      "height": 1.2
+    },
+    {
+      "id": 10,
+      "kind": "window",
+      "wall": 1,
+      "offset": 0.7,
+      "width": 1.4,
+      "sill": 0.9,
+      "height": 1.2
+    },
+    {
+      "id": 11,
+      "kind": "window",
+      "wall": 12,
+      "offset": 0.27,
+      "width": 1.4,
+      "sill": 0.9,
+      "height": 1.2
+    }
+  ],
+  "program": {
+    "title": "Chat layout",
+    "summary": "A 10.0 \u00d7 9.0 m plan with 2 bedroom(s) and 1 bathroom(s).",
+    "plot": {
+      "width_m": 10.0,
+      "depth_m": 9.0
+    },
+    "rooms": [
+      {
+        "name": "Living room",
+        "type": "living_room",
+        "weight": 3.4,
+        "zone": "front",
+        "windows": 2,
+        "doors": 1
+      },
+      {
+        "name": "Kitchen",
+        "type": "kitchen",
+        "weight": 2.0,
+        "zone": "front",
+        "windows": 1,
+        "doors": 1
+      },
+      {
+        "name": "Hall",
+        "type": "hall",
+        "weight": 1.2,
+        "zone": "middle",
+        "windows": 0,
+        "doors": 2
+      },
+      {
+        "name": "Master bedroom",
+        "type": "bedroom",
+        "weight": 2.6,
+        "zone": "back",
+        "windows": 1,
+        "doors": 1
+      },
+      {
+        "name": "Bedroom 2",
+        "type": "bedroom",
+        "weight": 2.3,
+        "zone": "back",
+        "windows": 1,
+        "doors": 1
+      },
+      {
+        "name": "Bathroom",
+        "type": "bathroom",
+        "weight": 1.1,
+        "zone": "middle",
+        "windows": 1,
+        "doors": 1
+      }
+    ],
+    "entrance": "Hall",
+    "notes": "Generated by the deterministic fallback because no GenAI provider was reachable.",
+    "variant": 0
+  },
+  "source": "offline",
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": [],
+    "repairs": [
+      {
+        "code": "drop_opening",
+        "message": "Dropped overlapping opening 12."
+      }
+    ],
+    "metrics": {
+      "rooms": 6,
+      "walls": 19,
+      "openings": 12,
+      "doors": 6,
+      "windows": 6,
+      "area_m2": 90.0,
+      "min_room_m2": 7.8,
+      "wall_height_m": 2.7,
+      "scale_m_per_unit": 1.0
+    }
+  },
+  "prompt": "2 bedroom house 10x9 m with kitchen living room bathroom",
+  "updated_at": 1795338698.882234
+}

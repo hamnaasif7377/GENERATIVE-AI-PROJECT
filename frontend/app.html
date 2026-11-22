@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan2Walk · Chat to 3D floor plans</title>
+<link rel="stylesheet" href="/frontend/app.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">Plan2<span>Walk</span><span class="tag">AI-4009</span></div>
+  <div class="provider" id="providerPill"><span class="spinner"></span> checking models…</div>
+  <div class="top-actions">
+    <a href="/frontend/gallery.html"><button class="ghost">Gallery</button></a>
+    <button class="ghost" id="docsBtn">API docs</button>
+  </div>
+</header>
+
+<main class="workspace">
+
+  <!-- ---------------------------------------------------------------- F1/F2 -->
+  <aside class="left">
+    <section class="card">
+      <h2>Describe your home</h2>
+      <div class="messages" id="messages">
+        <div class="msg assistant">Tell me the plot size, the rooms you need and any preferences. For example: <b>“A 3 bedroom house on a 12 × 10 m plot with an open kitchen, two bathrooms and a hall.”</b></div>
+      </div>
+      <textarea id="prompt" placeholder="e.g. 4 bedrooms, 2 bathrooms, open kitchen, small office, 15 by 11 metre plot…"></textarea>
+      <div class="row">
+        <button class="primary" id="generateBtn">Generate plan</button>
+        <button id="anotherBtn" title="Same requirements, different arrangement">Another option</button>
+      </div>
+      <div class="examples" id="examples">
+        <button data-prompt="2 bedroom apartment, 60 m², open kitchen and one bathroom">2-bed flat</button>
+        <button data-prompt="3 bedroom family house on a 12x10 m plot with a hall, 2 bathrooms and a small office">3-bed house</button>
+        <button data-prompt="4 bedroom house on a 16 by 12 m plot with a large living room, kitchen, 3 bathrooms and a store">4-bed house</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Import a floor plan</h2>
+      <label class="field">PNG, JPG or PDF page
+        <input type="file" id="planFile" accept="image/png,image/jpeg,image/webp,application/pdf">
+      </label>
+      <div class="row">
+        <label class="field">Known width (m, optional)
+          <input type="number" id="scaleInput" min="3" max="60" step="0.1" placeholder="e.g. 12">
+        </label>
+      </div>
+      <div class="row">
+        <button id="uploadBtn">Read plan with vision model</button>
+      </div>
+      <div class="examples">
+        <span style="font-size:10.5px;color:var(--muted)">Tip: a clear, straight-on scan works best. The VLM reads room labels, then code rebuilds the geometry.</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Saved plans</h2>
+      <ul class="plan-list" id="planList"><li><small>No plans yet.</small></li></ul>
+    </section>
+  </aside>
+
+  <!-- ---------------------------------------------------------------- F4/F5 -->
+  <section class="center">
+    <div class="plan-toolbar">
+      <div class="plan-title" id="planTitle">No plan loaded<small id="planSub">generate or import a plan to begin</small></div>
+      <div class="tools">
+        <button id="addDoorBtn" title="Place a door by clicking a wall">+ Door</button>
+        <button id="addWindowBtn" title="Place a window by clicking an exterior wall">+ Window</button>
+        <button id="deleteOpeningBtn" disabled title="Delete the selected opening">Delete opening</button>
+        <button id="validateBtn" title="Run the geometry checks">Re-validate</button>
+        <button id="repairBtn" title="Fix small geometry problems automatically">Repair</button>
+        <button class="primary" id="open3dBtn" disabled>Open 3D walkthrough</button>
+      </div>
+    </div>
+
+    <div class="canvas-wrap">
+      <svg id="plan" xmlns="http://www.w3.org/2000/svg"></svg>
+      <div class="empty" id="emptyState">Your 2D plan will appear here.<br>Generate from chat or upload an existing plan.</div>
+    </div>
+
+    <div class="legend">
+      <span><i style="background:#dbeafe"></i>Living</span>
+      <span><i style="background:#fde68a"></i>Kitchen</span>
+      <span><i style="background:#dcfce7"></i>Bedroom</span>
+      <span><i style="background:#cffafe"></i>Bathroom</span>
+      <span><i style="background:#f3e8ff"></i>Hall</span>
+      <span><i style="background:#fee2e2"></i>Other</span>
+      <span style="margin-left:auto">Drag to pan · scroll to zoom · click a room, door or window to edit</span>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------- F3/F4 -->
+  <aside class="right">
+    <section class="card inspector" id="inspector">
+      <h2>Inspector</h2>
+      <div class="empty-note" id="inspectorBody">Select a room, door or window on the plan to rename it or change its size and position.</div>
+    </section>
+
+    <section class="card">
+      <div class="report-head">
+        <h2 style="margin:0">Geometry check</h2>
+        <span class="pill" id="okPill">not run</span>
+      </div>
+      <ul class="issues" id="issues"><li><small>No plan loaded.</small></li></ul>
+      <div class="metrics" id="metrics"></div>
+    </section>
+
+    <section class="card">
+      <h2>Export</h2>
+      <div class="row">
+        <button id="exportBtn" disabled>Download layout JSON</button>
+        <button id="exportGlbBtn" disabled>Download GLB</button>
+      </div>
+      <div class="examples"><span style="font-size:10.5px;color:var(--muted)">The GLB is built deterministically from this layout, not generated by the model.</span></div>
+    </section>
+  </aside>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script src="/frontend/app.js"></script>
+</body>
+</html>
